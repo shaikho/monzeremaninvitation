@@ -8,25 +8,21 @@ export const EVENT = {
   maps: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Tia Vie, Cairo, Egypt'),
 };
 
-// Imagery. "1" is the primary image: it sets the palette and the art direction.
+// Imagery: crops of image "1" (the arched lily invitation), which also sets the palette.
+// The opening, the interlude and the closing use generated florals (src/art/flora.js) instead.
 // Each entry: [file name in public/images without extension, intrinsic width, height]
 export const IMAGES = {
-  one: ['1', 854, 1280],
-  two: ['2', 854, 1280],
-  floraMacro: ['flora-macro', 370, 560],
-  floraPanel: ['flora-panel', 300, 1280],
-  floraLeaves: ['flora-leaves', 285, 520],
+  liliesSide: ['lilies-side', 204, 1280],
   liliesTop: ['lilies-top', 288, 540],
   liliesLow: ['lilies-low', 330, 350],
 };
 
 // The order of the evening. Minutes after midnight, used for the rolling numerals.
 export const SCHEDULE = [
-  { min: 19 * 60, key: 's1' },
-  { min: 20 * 60, key: 's2' },
-  { min: 21 * 60 + 30, key: 's3' },
-  { min: 23 * 60, key: 's4' },
-  { min: 24 * 60 + 30, key: 's5' },
+  { min: 20 * 60, key: 's1' },
+  { min: 21 * 60, key: 's2' },
+  { min: 22 * 60, key: 's3' },
+  { min: 24 * 60, key: 's4' },
 ];
 
 export const I18N = {
@@ -71,12 +67,9 @@ export const I18N = {
     'venue.apple': 'Apple Calendar',
 
     'sched.chapter': 'V · The order of the evening',
-    's1': 'Guests arrive', 's2': 'The zaffa', 's3': 'Dinner', 's4': 'Cake & dancing', 's5': 'Farewell',
+    's1': 'Reception', 's2': 'The zaffa', 's3': 'Dinner', 's4': 'The jertig',
 
-    'paper.chapter': 'VI · In print',
-    'paper.caption': 'The invitation, as it was printed.',
-
-    'msg.chapter': 'VII · A word from you',
+        'msg.chapter': 'VI · A word from you',
     'msg.title': 'Leave us a few words',
     'msg.lead': 'Your wishes reach only the two of us.',
     'msg.name': 'Your name',
@@ -134,12 +127,9 @@ export const I18N = {
     'venue.apple': 'تقويم Apple',
 
     'sched.chapter': 'برنامج الأمسية',
-    's1': 'استقبال الضيوف', 's2': 'الزفّة', 's3': 'العشاء', 's4': 'قطع الكيك والرقص', 's5': 'الوداع',
+    's1': 'الاستقبال', 's2': 'الزفّة', 's3': 'العشاء', 's4': 'الجرتق',
 
-    'paper.chapter': 'على الورق',
-    'paper.caption': 'الدعوة كما طُبعت.',
-
-    'msg.chapter': 'كلمة منكم',
+        'msg.chapter': 'كلمة منكم',
     'msg.title': 'اتركوا لنا كلماتكم',
     'msg.lead': 'تهانيكم ودعواتكم تصلنا وحدنا.',
     'msg.name': 'اسمك',

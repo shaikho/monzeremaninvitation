@@ -1,7 +1,7 @@
 import { animate, createScope, stagger } from 'animejs';
 import './styles/main.css';
 import { EVENT, SCHEDULE, I18N } from './content.js';
-import lqip from './data/lqip.json';
+import * as flora from './art/flora.js';
 import { $, $$, params, reducedMotion, isDesktop, store } from './utils/dom.js';
 import { splitLetters } from './utils/split.js';
 import { createMusic } from './audio.js';
@@ -166,9 +166,12 @@ function initForm() {
 }
 
 // ── boot ─────────────────────────────────────────────────────────────
-function setPlaceholder() {
-  const el = $('.hero-lqip');
-  el.style.backgroundImage = `url("${lqip[el.dataset.lqip]}")`;
+// generated florals: data-flora="<composition>:<seed>"
+function renderFlora() {
+  $$('[data-flora]').forEach((el) => {
+    const [name, seed, long] = el.dataset.flora.split(':');
+    el.innerHTML = flora[name](Number(seed), { long: Number(long) || 1 });
+  });
 }
 
 let scope = null;
@@ -187,7 +190,7 @@ $('#langBtn').addEventListener('click', (e) => {
   startScrollScene();
 });
 
-setPlaceholder();
+renderFlora();
 applyLanguage();
 initForm();
 watchChromeTone();

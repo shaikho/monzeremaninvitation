@@ -4,19 +4,23 @@
    paper, rose and mauve petals, olive leaves, the deep olive-umber of the ink.
    ========================================================================== */
 :root {
-  --color-paper: #ebdfd3;        /* the card's paper            (#e9dbce sampled) */
-  --color-paper-2: #f4ece4;      /* lifted paper                                   */
-  --color-blush: #d3ada6;        /* petal light                 (#d3ada6 sampled) */
-  --color-rose: #b68d8a;         /* petal mid                   (#b68d8a sampled) */
-  --color-mauve: #6c4546;        /* petal shadow                (#6c4546 sampled) */
-  --color-olive: #847b5f;        /* leaves                      (#9f927f, deepened for contrast) */
-  --color-ink: #35301d;          /* script ink                  (#35301d sampled) */
-  --color-ink-soft: #5d5442;
-  --color-gold: #9a7440;         /* monogram gold               (#7e5e2f, lifted) */
-  --color-night: #2a1d1e;        /* petal shadow, deepened to a film black */
-  --color-night-2: #3a2829;
-  --color-cream: #f2e7dd;        /* text on night */
-  --color-cream-soft: rgba(242, 231, 221, .72);
+  /* Sampled from image "1" (the arched lily invitation): sage paper, plum-to-pink wisteria,
+     deep leaf greens, cream lilies and a muted gold. */
+  --color-paper: #dfe0cb;        /* sage paper            (#dcdec8 sampled) */
+  --color-paper-2: #e9e8d7;      /* lifted sage-cream     */
+  --color-sage: #bcbea6;         /* the arch              (#bcbea6 sampled) */
+  --color-leaf: #64674d;         /* leaves                (#64674d sampled) */
+  --color-ink: #33371f;          /* deep leaf, as text    (#3b3e28 sampled, deepened) */
+  --color-ink-soft: #595d43;
+  --color-plum: #511f2a;         /* wisteria, deepest     (#511f2a sampled) */
+  --color-magenta: #853d4f;      /* wisteria              (#853d4f sampled) — the accent */
+  --color-pink: #cb9496;         /* wisteria tips, lilies (#cb9496 sampled) */
+  --color-blush: #e5c2bf;        /* pale pink             (#e5c2bf sampled) */
+  --color-gold: #8f7850;         /* the gold rules        (#b19d7a sampled, deepened for text) */
+  --color-night: #23271a;        /* deep leaf green, for the dark scenes */
+  --color-night-2: #2f3424;
+  --color-cream: #f1eee2;        /* text on night */
+  --color-cream-soft: rgba(241, 238, 226, .74);
 
   --f-display: 'Bodoni Moda', 'Times New Roman', serif;
   --f-sans: 'Manrope', system-ui, sans-serif;
@@ -65,6 +69,7 @@ body::after {
   pointer-events: none;
 }
 html[data-chrome='dark'] .chrome { color: var(--color-ink); }
+html[data-chrome='dark'] .chrome-btn { background: rgba(223, 224, 203, .72); }
 .chrome > * { pointer-events: auto; }
 .chrome-mark {
   font-family: 'Bodoni Moda', serif; font-size: 20px; letter-spacing: .04em; text-decoration: none;
@@ -75,7 +80,7 @@ html[data-chrome='dark'] .chrome { color: var(--color-ink); }
 .chrome-btn {
   display: inline-flex; align-items: center; gap: 8px;
   height: 34px; padding: 0 12px; border: 1px solid currentColor; border-radius: 999px;
-  background: transparent; cursor: pointer;
+  background: rgba(35, 39, 26, .28); cursor: pointer;
   font-family: var(--f-sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
   opacity: .9;
 }
@@ -94,89 +99,81 @@ section { position: relative; }
 .chapter {
   display: flex; align-items: center; gap: 14px;
   margin: 0 0 clamp(28px, 6vh, 64px);
-  font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--color-mauve);
+  font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: var(--color-magenta);
 }
 .chapter::before { content: ''; width: 34px; height: 1px; background: currentColor; opacity: .7; }
 :lang(ar) .chapter { font-size: 14px; letter-spacing: 0; }
 .chapter--light { color: var(--color-blush); }
 
 /* ==========================================================================
-   1 · Opening
+   1 · Opening — generated florals (lilies, wisteria, leaves) frame the names
    ========================================================================== */
 .hero {
-  height: 100svh; min-height: 560px;
-  background: var(--color-night);
-  color: var(--color-cream);
+  height: 100svh; min-height: 600px;
+  background: var(--color-night);          /* the dark the opening begins in */
+  color: var(--color-ink);
   overflow: hidden;
 }
-.hero-media { position: absolute; inset: 0; }
-.hero-frame {
-  position: absolute; inset: 0; overflow: hidden;
-  clip-path: inset(0);
-  background: var(--color-night-2);
-}
-.hero-lqip, .hero-img, .hero-frame picture { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-lqip { background-size: cover; background-position: 30% 40%; filter: blur(18px); transform: scale(1.15); }
-.hero-img { object-fit: cover; object-position: 30% 40%; transform-origin: 40% 45%; }
-.hero-veil {
+.hero-stage {
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(42, 29, 30, .35) 0%, rgba(42, 29, 30, .05) 28%, rgba(42, 29, 30, .25) 52%, rgba(42, 29, 30, .92) 100%);
+    radial-gradient(70% 55% at 50% 52%, #eeeedd 0%, rgba(238, 238, 221, 0) 70%),
+    radial-gradient(120% 90% at 50% 50%, var(--color-paper) 40%, #ccceb5 100%);
+  clip-path: circle(150% at 50% 50%);
 }
+.hero-flora { position: absolute; pointer-events: none; will-change: transform; }
+.hero-flora svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hero-flora--tl { top: 0; left: -4vw; width: min(64vw, 460px); }
+.hero-flora--tr { top: 0; right: -4vw; width: min(64vw, 460px); }
+.hero-flora--tr svg, .hero-flora--br svg { transform: scaleX(-1); }
+.hero-flora--bl { bottom: -2px; left: -3vw; width: min(52vw, 340px); }
+.hero-flora--br { bottom: -2px; right: -3vw; width: min(52vw, 340px); }
+.flora .fl-bloom { transform-box: fill-box; transform-origin: center; }
+
 .hero-copy {
-  position: absolute; inset-inline: var(--gutter); bottom: calc(96px + env(safe-area-inset-bottom));
-  z-index: 2;
+  position: absolute; z-index: 2; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 30vh var(--gutter) 16vh; text-align: center;
 }
 .hero-kicker {
-  margin: 0 0 14px; font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--color-cream-soft);
+  margin: 0 0 16px; font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--color-ink-soft);
 }
 :lang(ar) .hero-kicker { font-size: 15px; letter-spacing: 0; }
 .names {
-  margin: 0; font-family: var(--f-display); font-weight: 400;
-  font-size: clamp(3.3rem, 16.5vw, 11rem); line-height: .9; letter-spacing: -.02em;
+  margin: 0; font-family: var(--f-display); font-weight: 400; color: var(--color-ink);
+  font-size: clamp(3rem, 14.5vw, 9rem); line-height: .92; letter-spacing: -.02em;
 }
-:lang(ar) .eve-num { font-family: 'Amiri', serif; line-height: 1; margin: 0; }
-:lang(ar) .sched-time { direction: rtl; font-family: 'Amiri', serif; }
-:lang(ar) .names { font-size: clamp(3.6rem, 19vw, 12rem); line-height: 1.12; letter-spacing: 0; font-weight: 700; }
-.names-line { display: block; overflow: hidden; padding: .04em .02em .08em; margin: -.04em -.02em -.08em; }
-.names-second { font-style: italic; padding-inline-start: .55em; color: var(--color-blush); }
-:lang(ar) .names-second { padding-inline-start: .4em; font-style: normal; }
+:lang(ar) .names { font-size: clamp(3.4rem, 17vw, 10rem); line-height: 1.15; letter-spacing: 0; font-weight: 700; }
+.names-line { display: block; overflow: hidden; padding: .04em .03em .1em; margin: -.04em -.03em -.1em; }
+.names-second { font-style: italic; color: var(--color-magenta); }
+:lang(ar) .names-second { font-style: normal; }
 .names-amp, .names-bride { display: inline-block; vertical-align: baseline; }
-.names-amp { font-style: italic; font-size: .55em; color: var(--color-gold); margin-inline-end: .2em; }
+.names-amp { font-style: italic; font-size: .55em; color: var(--color-gold); margin-inline-end: .18em; }
 :lang(ar) .names-amp { font-style: normal; font-size: .6em; }
 .names .ch { display: inline-block; will-change: transform; }
+.hero-rule { width: 64px; height: 1px; margin: 22px auto 0; background: var(--color-gold); transform-origin: center; }
 .hero-date {
-  margin: 18px 0 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--color-cream-soft);
+  margin: 16px 0 0; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--color-ink-soft);
 }
 :lang(ar) .hero-date { font-size: 15px; letter-spacing: .04em; }
 
 .scroll-cue {
-  position: absolute; z-index: 2; inset-inline-start: var(--gutter); bottom: calc(26px + env(safe-area-inset-bottom));
-  display: flex; align-items: center; gap: 14px;
-  font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--color-cream-soft);
+  position: absolute; z-index: 2; left: 50%; translate: -50% 0; bottom: calc(22px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--color-ink-soft);
 }
 :lang(ar) .scroll-cue { font-size: 13px; letter-spacing: 0; }
-.scroll-cue-line { position: relative; width: 56px; height: 1px; background: rgba(242, 231, 221, .25); overflow: hidden; }
+.scroll-cue-line { position: relative; width: 1px; height: 38px; background: rgba(51, 55, 31, .2); overflow: hidden; }
 .scroll-cue-line::after {
-  content: ''; position: absolute; inset: 0; background: var(--color-cream);
-  transform: translateX(-100%); animation: cue 2.4s var(--ease-out) infinite;
+  content: ''; position: absolute; inset: 0; background: var(--color-ink);
+  transform: translateY(-100%); animation: cue 2.4s var(--ease-out) infinite;
 }
-:dir(rtl) .scroll-cue-line::after { animation-name: cue-rtl; }
-@keyframes cue { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
-@keyframes cue-rtl { 0% { transform: translateX(100%); } 60%, 100% { transform: translateX(-100%); } }
+@keyframes cue { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(100%); } }
 
-/* desktop: an editorial split — the image is a tall plate, the names cut across it */
 @media (min-width: 900px) {
-  .hero { background: var(--color-paper); color: var(--color-ink); }
-  .hero-media { inset: 11vh var(--gutter) 9vh 50%; }
-  :dir(rtl) .hero-media { inset: 11vh 50% 9vh var(--gutter); }
-  .hero-veil { background: linear-gradient(180deg, transparent 55%, rgba(42, 29, 30, .25)); }
-  .hero-copy { bottom: auto; top: 50%; translate: 0 -46%; inset-inline: var(--gutter) 30%; }
-  .hero-kicker, .hero-date, .scroll-cue { color: var(--color-ink-soft); }
-  .names { font-size: clamp(5rem, 10.5vw, 12.5rem); color: var(--color-ink); }
-  .names-second { color: var(--color-mauve); }
-  .scroll-cue-line { background: rgba(53, 48, 29, .2); }
-  .scroll-cue-line::after { background: var(--color-ink); }
+  .hero-flora--tl, .hero-flora--tr { width: min(36vw, 600px); }
+  .hero-flora--bl, .hero-flora--br { width: min(26vw, 440px); }
+  .names { font-size: clamp(5rem, 8.6vw, 10.5rem); }
 }
 
 /* ==========================================================================
@@ -184,11 +181,11 @@ section { position: relative; }
    ========================================================================== */
 .story { padding: 18vh var(--gutter) 16vh; background: var(--color-paper); }
 .story-stage { position: relative; min-height: 196vw; }
-.story-a, .story-b { position: absolute; overflow: hidden; background: var(--color-blush); }
+.story-a, .story-b { position: absolute; overflow: hidden; background: var(--color-sage); }
 .story-a img, .story-b img { width: 100%; height: 100%; object-fit: cover; }
 .story-a { inset-inline-start: 0; top: 0; width: 60vw; aspect-ratio: 3 / 4.4; }
 .story-a img { object-position: 50% 12%; }
-.story-b { inset-inline-end: calc(var(--gutter) * -1); top: 118vw; width: 46vw; aspect-ratio: 3 / 4.6; box-shadow: 0 30px 60px -30px rgba(42, 29, 30, .5); }
+.story-b { inset-inline-end: calc(var(--gutter) * -1); top: 118vw; width: 46vw; aspect-ratio: 3 / 4.6; box-shadow: 0 30px 60px -30px rgba(35, 39, 26, .5); }
 .story-title {
   position: absolute; z-index: 2; inset-inline: 0; top: 94vw; margin: 0;
   font-family: var(--f-display); font-weight: 400; font-size: clamp(2.6rem, 12.5vw, 9rem); line-height: .98; letter-spacing: -.015em;
@@ -196,7 +193,7 @@ section { position: relative; }
 }
 :lang(ar) .story-title { line-height: 1.35; letter-spacing: 0; }
 .story-line { display: block; }
-.story-line--em { font-style: italic; color: var(--color-mauve); padding-inline-start: .9em; }
+.story-line--em { font-style: italic; color: var(--color-magenta); padding-inline-start: .9em; }
 :lang(ar) .story-line--em { font-style: normal; padding-inline-start: .5em; }
 .story-caption {
   position: absolute; inset-inline-start: 0; top: 150vw; width: 44vw; margin: 0;
@@ -226,7 +223,7 @@ section { position: relative; }
 :lang(ar) .invite-text { max-width: 16ch; line-height: 1.6; letter-spacing: 0; }
 .invite-text .w { display: inline; }
 .invite-leaf { position: absolute; inset-inline-end: -4vw; bottom: -8vw; width: 30vw; max-width: 360px; opacity: .9; }
-.invite-leaf img { width: 100%; height: auto; mix-blend-mode: multiply; }
+.invite-leaf svg { display: block; width: 100%; height: auto; }
 @media (min-width: 900px) {
   .invite { padding: 24vh 14vw 30vh; }
   .invite-text { max-width: 20ch; }
@@ -239,7 +236,7 @@ section { position: relative; }
 .evening { padding: 16vh var(--gutter) 18vh; background: var(--color-paper); overflow: hidden; }
 .eve-grid { display: grid; grid-template-columns: 1fr; }
 .eve-day {
-  margin: 0; font-family: var(--f-display); font-style: italic; font-size: clamp(1.8rem, 8vw, 3.6rem); color: var(--color-mauve);
+  margin: 0; font-family: var(--f-display); font-style: italic; font-size: clamp(1.8rem, 8vw, 3.6rem); color: var(--color-magenta);
 }
 :lang(ar) .eve-day { font-style: normal; }
 .eve-num {
@@ -257,14 +254,14 @@ section { position: relative; }
 :lang(ar) .eve-time { font-size: 15px; letter-spacing: 0; }
 .countdown {
   display: grid; grid-template-columns: repeat(3, 1fr); align-items: end;
-  margin-top: 12vh; padding-top: 22px; border-top: 1px solid rgba(53, 48, 29, .18);
+  margin-top: 12vh; padding-top: 22px; border-top: 1px solid rgba(51, 55, 31, .18);
 }
 .cd-unit { display: flex; flex-direction: column; gap: 4px; }
-.cd-unit + .cd-unit { padding-inline-start: 16px; border-inline-start: 1px solid rgba(53, 48, 29, .14); }
+.cd-unit + .cd-unit { padding-inline-start: 16px; border-inline-start: 1px solid rgba(51, 55, 31, .14); }
 .cd-unit b { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(2rem, 9vw, 3.4rem); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
 .cd-unit span { font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: var(--color-ink-soft); }
 :lang(ar) .cd-unit span { font-size: 13px; letter-spacing: 0; }
-.cd-until { grid-column: 1 / -1; margin: 18px 0 0; font-family: var(--f-display); font-style: italic; color: var(--color-mauve); }
+.cd-until { grid-column: 1 / -1; margin: 18px 0 0; font-family: var(--f-display); font-style: italic; color: var(--color-magenta); }
 :lang(ar) .cd-until { font-style: normal; }
 @media (min-width: 900px) {
   .eve-grid { grid-template-columns: auto 1fr; align-items: end; column-gap: 4vw; }
@@ -286,7 +283,7 @@ section { position: relative; }
 }
 .venue-window picture, .venue-img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .venue-img { object-fit: cover; object-position: 30% 50%; transform: scale(1.35); }
-.venue-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(42, 29, 30, .2), rgba(42, 29, 30, .78) 78%); opacity: 0; }
+.venue-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(35, 39, 26, .2), rgba(35, 39, 26, .78) 78%); opacity: 0; }
 .venue-copy {
   position: absolute; z-index: 2; inset-inline: var(--gutter); bottom: calc(10vh + env(safe-area-inset-bottom));
   color: var(--color-cream); opacity: 0;
@@ -302,7 +299,7 @@ section { position: relative; }
 .venue-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; }
 .venue-links a {
   display: inline-flex; gap: 8px; align-items: baseline; padding-bottom: 4px;
-  border-bottom: 1px solid rgba(242, 231, 221, .45); text-decoration: none;
+  border-bottom: 1px solid rgba(241, 238, 226, .45); text-decoration: none;
   font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
 }
 :lang(ar) .venue-links a { font-size: 15px; letter-spacing: 0; }
@@ -319,7 +316,7 @@ section { position: relative; }
   padding: 26px 0 22px;
 }
 .sched-row::after { /* the rule draws in */
-  content: ''; position: absolute; inset: auto 0 0 0; height: 1px; background: rgba(242, 231, 221, .22);
+  content: ''; position: absolute; inset: auto 0 0 0; height: 1px; background: rgba(241, 238, 226, .22);
   transform: scaleX(var(--rule, 1)); transform-origin: left center;
 }
 :dir(rtl) .sched-row::after { transform-origin: right center; }
@@ -341,25 +338,20 @@ section { position: relative; }
 }
 
 /* ==========================================================================
-   7 · In print
+   7 · Interlude — a curtain of wisteria and a bouquet of lilies
    ========================================================================== */
-.paper { padding: 16vh var(--gutter) 14vh; background: var(--color-paper-2); overflow: hidden; }
-.paper-stage { position: relative; height: 124vw; max-height: 900px; }
-.paper-sheet {
-  position: absolute; width: 58vw; max-width: 420px; aspect-ratio: 854 / 1280;
-  box-shadow: 0 2px 4px rgba(42, 29, 30, .08), 0 40px 70px -30px rgba(42, 29, 30, .45);
-  background: var(--color-paper);
+.interlude {
+  position: relative; overflow: hidden;
+  padding: 0 0 14vh; background: linear-gradient(180deg, var(--color-paper-2), var(--color-paper));
 }
-.paper-sheet img { width: 100%; height: 100%; object-fit: cover; }
-.paper-sheet--a { inset-inline-start: 0; top: 0; rotate: -5deg; }
-.paper-sheet--b { inset-inline-end: 0; top: 30vw; rotate: 4deg; }
-.paper-caption { margin: 4vh 0 0; font-family: var(--f-display); font-style: italic; font-size: 1.15rem; color: var(--color-mauve); text-align: center; }
-:lang(ar) .paper-caption { font-style: normal; }
+.interlude-curtain { width: 100%; height: clamp(300px, 62vw, 620px); }
+.interlude-curtain svg { display: block; width: 100%; height: 100%; }
+.interlude-bouquet { width: min(92vw, 620px); margin: -14vw auto 0; will-change: transform; }
+.interlude-bouquet svg { display: block; width: 100%; height: auto; overflow: visible; }
+.flora .fl-raceme { will-change: auto; }
 @media (min-width: 900px) {
-  .paper-stage { height: 46vw; max-height: none; }
-  .paper-sheet { width: 26vw; max-width: none; }
-  .paper-sheet--a { inset-inline-start: 18vw; }
-  .paper-sheet--b { inset-inline-end: 18vw; top: 6vw; }
+  .interlude-curtain { height: clamp(380px, 34vw, 640px); }
+  .interlude-bouquet { margin-top: -6vw; width: min(46vw, 640px); }
 }
 
 /* ==========================================================================
@@ -374,10 +366,10 @@ section { position: relative; }
 .note-lead { margin: 18px 0 0; color: var(--color-ink-soft); }
 .note-form { margin-top: 8vh; display: grid; gap: 34px; max-width: 640px; }
 .field { display: grid; gap: 6px; }
-.field > span { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--color-mauve); }
+.field > span { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--color-magenta); }
 :lang(ar) .field > span { font-size: 14px; letter-spacing: 0; }
 .field input, .field textarea {
-  width: 100%; padding: 6px 0 10px; border: 0; border-bottom: 1px solid rgba(53, 48, 29, .3); border-radius: 0;
+  width: 100%; padding: 6px 0 10px; border: 0; border-bottom: 1px solid rgba(51, 55, 31, .3); border-radius: 0;
   background: transparent; color: var(--color-ink); outline: none; resize: none;
   font-family: var(--f-display); font-size: 1.5rem; line-height: 1.4;
   transition: border-color .3s ease;
@@ -385,7 +377,7 @@ section { position: relative; }
 }
 .field input:focus, .field textarea:focus { border-bottom-color: var(--color-ink); }
 .note-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.note-status { margin: 0; font-size: 14px; color: var(--color-mauve); min-height: 1.4em; }
+.note-status { margin: 0; font-size: 14px; color: var(--color-magenta); min-height: 1.4em; }
 .note-send {
   display: inline-flex; align-items: center; gap: 14px; padding: 14px 4px 14px 24px;
   border: 0; border-bottom: 1px solid var(--color-ink); background: none; cursor: pointer;
@@ -398,21 +390,23 @@ section { position: relative; }
 :dir(rtl) .note-send:hover i { transform: scaleX(-1) translateX(6px); }
 .note-send:disabled { opacity: .5; cursor: default; }
 .note-thanks { margin-top: 8vh; }
-.note-thanks-title { margin: 0; font-family: var(--f-display); font-style: italic; font-size: clamp(2.2rem, 9vw, 4.8rem); line-height: 1.05; color: var(--color-mauve); }
+.note-thanks-title { margin: 0; font-family: var(--f-display); font-style: italic; font-size: clamp(2.2rem, 9vw, 4.8rem); line-height: 1.05; color: var(--color-magenta); }
 :lang(ar) .note-thanks-title { font-style: normal; line-height: 1.4; }
 .note-thanks-sub { margin: 14px 0 0; color: var(--color-ink-soft); }
 
 /* ==========================================================================
-   9 · Closing
+   9 · Closing — the florals return, glowing on the dark, with the names
    ========================================================================== */
-.ending { height: 100svh; min-height: 600px; background: var(--color-night); color: var(--color-cream); overflow: hidden; }
-.ending-media { position: absolute; inset: 0; }
-.ending-media picture, .ending-img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ending-img { object-fit: cover; object-position: 50% 30%; transform: scale(1.18); }
-.ending-veil { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 50%, rgba(42, 29, 30, .55), rgba(42, 29, 30, .92)); }
-.ending-copy { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 var(--gutter); }
+.ending { height: 100svh; min-height: 620px; background: radial-gradient(90% 70% at 50% 50%, var(--color-night-2), var(--color-night)); color: var(--color-cream); overflow: hidden; }
+.ending-flora { position: absolute; pointer-events: none; opacity: .92; }
+.ending-flora svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ending-flora--tl { top: 0; left: 0; width: min(46vw, 420px); }
+.ending-flora--tr { top: 0; right: 0; width: min(46vw, 420px); }
+.ending-flora--tr svg { transform: scaleX(-1); }
+.ending-flora--b { bottom: -30vw; left: 50%; translate: -50% 0; width: min(66vw, 460px); }
+.ending-copy { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 var(--gutter) 16vh; }
 .ending-names {
-  margin: 0; font-family: var(--f-display); font-size: clamp(2.6rem, 12vw, 7.5rem); line-height: .98; letter-spacing: .02em; text-transform: uppercase;
+  margin: 0; font-family: var(--f-display); font-size: clamp(2.4rem, 11vw, 7rem); line-height: .98; letter-spacing: .02em; text-transform: uppercase;
 }
 :lang(ar) .ending-names { text-transform: none; line-height: 1.3; letter-spacing: 0; font-weight: 700; }
 .ending-line { display: block; }
@@ -421,23 +415,29 @@ section { position: relative; }
 :lang(ar) .ending-tag { font-style: normal; }
 .ending-sign { margin: 10px 0 0; font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--color-cream-soft); }
 :lang(ar) .ending-sign { font-size: 13px; letter-spacing: .04em; }
+@media (min-width: 900px) {
+  .ending-flora--tl, .ending-flora--tr { width: min(28vw, 480px); }
+  .ending-flora--b { width: min(26vw, 460px); bottom: -17vw; }
+  .ending-copy { padding-bottom: 20vh; }
+}
 
 /* ---------- initial states for animated elements (JS reveals them) ---------- */
 .is-intro .hero-copy, .is-intro .scroll-cue, .is-intro .chrome { opacity: 0; }
-.is-intro .hero-frame { clip-path: inset(50% 50% 50% 50%); }
-.js [data-fade], .js .eve-num, .js .sched-time, .js .sched-what, .js .ending-line, .js .ending-tag, .js .ending-sign { opacity: 0; }
+.is-intro .hero-stage { clip-path: circle(0% at 50% 50%); }
+.js .ending-flora, .js [data-fade], .js .eve-num, .js .sched-time, .js .sched-what, .js .ending-line, .js .ending-tag, .js .ending-sign { opacity: 0; }
 .js .story-a { clip-path: inset(100% 0 0 0); }
 .js .sched-row { --rule: 0; }
 
 /* ---------- static (previews) and reduced motion: everything simply present ---------- */
 html.static [data-fade], html.static .eve-num, html.static .sched-time, html.static .sched-what, html.static .ending-line, html.static .ending-tag, html.static .ending-sign { opacity: 1; }
 html.static .story-a { clip-path: none; }
+html.static .ending-flora { opacity: .92; }
 html.static .sched-row { --rule: 1; }
 html.static .invite-text .w { opacity: 1; }
 html.static .venue { height: auto; }
 html.static .venue-sticky { position: relative; }
 html.static .venue-window { clip-path: none; }
-html.static .venue-img, html.static .ending-img { transform: none; }
+html.static .venue-img { transform: none; }
 html.static .venue-shade, html.static .venue-copy { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .js [data-fade] { opacity: 1; }

@@ -12,15 +12,17 @@ npm run preview    # serves dist/ (static only: /api needs `npm run dev` or Verc
 
 ## The experience
 
-1. **Opening.** A hairline of light splits the dark and opens like a curtain onto the bloom while the image pulls back from a deep zoom. The names rise letter by letter: *Mohammed / Almonzer / & Eman*. Any tap skips to the end. On desktop it becomes an editorial split: the names cut across a tall image plate.
-2. **Prologue.** Overlapping, asymmetric imagery: a tall plate unveils upward, the lilies drift at a different speed, with *Two families, one story.*
+1. **Opening.** Light opens from the centre of the dark onto sage paper. Generated florals grow in: wisteria racemes unfurl down from the top corners, leaves arrive, white and pink lilies bloom open, and sprays rise at the bottom. Then the names rise letter by letter (*Mohammed / Almonzer / & Eman*) over a gold rule. Any tap skips to the end. Scrolling away parts the florals like curtains.
+2. **Prologue.** Overlapping, asymmetric lily imagery from image 1, with *Two families, one story.*
 3. **The invitation.** One large paragraph that lights up word by word as you read.
 4. **The evening.** A monumental **27** that counts up into place, plus a quiet days / hours / minutes countdown.
-5. **The venue.** Pinned: a small window opens to full bleed as you scroll, then *Tia Vie*, directions and calendar links fade in.
-6. **The order of the evening.** Large numerals that roll up to each hour, with rules drawing in.
-7. **In print.** The two printed invitations drift past each other.
-8. **A word from you.** A private message to the couple, as a quiet, underlined editorial form.
-9. **The end.** A slow pull-back on the bloom, then the names like closing credits.
+5. **The venue.** Pinned: a small window opens to full bleed as you scroll, then *Tia Vie*, directions and calendar links.
+6. **The order of the evening.** 8:00 PM reception · 9:00 PM the zaffa · 10:00 PM dinner · 12:00 AM the jertig, as large numerals that roll up to each hour.
+7. **Interlude.** A curtain of wisteria grows down, and a bouquet of lilies blooms open.
+8. **A word from you.** A private message to the couple.
+9. **The end.** The florals return, glowing on deep green, with the names like closing credits.
+
+The flowers are generated SVG (`src/art/flora.js`, modeled on image 1's lilies, wisteria and leaves). Change a composition's seed in `index.html` (`data-flora="cascade:3"`) to get a different arrangement.
 
 **Music:** `public/audio/evening.mp3` is an original, soft piano-and-pad loop (58 s) composed for the site. It never autoplays: it fades in on the guest's first tap, and the **Sound** button turns it on or off. To use a different song, replace that file and keep the name.
 
@@ -28,31 +30,26 @@ Animation touches only `transform`, `opacity` and `clip-path`. Scroll scenes use
 
 ## Palette
 
-Sampled from image **1** (`public/images/1.jpg`, the couple's floral invitation), as CSS variables at the top of `src/styles/main.css`:
+Sampled from image **1**, the arched lily invitation, as CSS variables at the top of `src/styles/main.css`:
 
 | Variable | Color | From |
 |---|---|---|
-| `--color-paper` | `#ebdfd3` | the card's paper |
-| `--color-blush` / `--color-rose` | `#d3ada6` / `#b68d8a` | petals |
-| `--color-mauve` | `#6c4546` | petal shadows (accent) |
-| `--color-ink` | `#35301d` | the script ink (text) |
-| `--color-gold` | `#9a7440` | the monogram |
-| `--color-night` | `#2a1d1e` | petal shadow deepened to a film black |
+| `--color-paper` / `--color-sage` | `#dfe0cb` / `#bcbea6` | the sage paper and arch |
+| `--color-leaf` / `--color-ink` | `#64674d` / `#33371f` | the leaves (deepest green is the text color) |
+| `--color-plum` / `--color-magenta` | `#511f2a` / `#853d4f` | the wisteria (magenta is the accent) |
+| `--color-pink` / `--color-blush` | `#cb9496` / `#e5c2bf` | wisteria tips and pink lilies |
+| `--color-gold` | `#8f7850` | the gold rules |
+| `--color-night` | `#23271a` | deep leaf green, for the dark scenes |
 
 ## Images
 
-`public/images/`, each as `.webp` plus a `.jpg` fallback. Blurred placeholders are in `src/data/lqip.json`.
-
-- `1`: the floral invitation (the primary, palette-setting image). `2`: the arched lily invitation.
-- `flora-*` and `lilies-*`: crops from those two artworks, clear of their printed lettering.
-
-To use real wedding photographs instead, drop them into `public/images/` and update the `<picture>` sources in `index.html` (and `IMAGES` in `src/content.js`).
+`public/images/` holds three crops of image 1 (`lilies-side`, `lilies-top`, `lilies-low`), each as `.webp` plus a `.jpg` fallback, used in the prologue and the venue. To use real wedding photographs, drop them in and update the `<picture>` sources in `index.html`.
 
 ## Editing content
 
 - **All text, both languages, and the schedule:** `src/content.js`.
 - **Date / venue / map link:** `EVENT` in `src/content.js`. The calendar file is `public/wedding.ics`.
-- **Link preview:** `public/og-film.jpg` (1200×630), referenced with absolute URLs at the top of `index.html` (domain `monzeremaninvitation.vercel.app`). To recapture it, open `/?og` at 1200×630. WhatsApp caches previews per URL, so give a new image a new file name.
+- **Link preview:** `public/og-bloom.jpg` (1200×630), referenced with absolute URLs at the top of `index.html` (domain `monzeremaninvitation.vercel.app`). To recapture it, open `/?og` at 1200×630. WhatsApp caches previews per URL, so give a new image a new file name.
 
 ## Messages (kept from the previous version)
 
@@ -66,6 +63,6 @@ On Vercel, messages are stored in **Vercel Blob**: project → **Storage** → *
 
 ## Preview helpers
 
-- `/?snap=<section id>` shows one finished section (`story`, `invitation`, `evening`, `venue`, `schedule`, `paper`, `note`, `ending`).
+- `/?snap=<section id>` shows one finished section (`story`, `invitation`, `evening`, `venue`, `schedule`, `bloom`, `note`, `ending`).
 - `/?lang=ar` or `/?lang=en` picks the language.
 - `/?og` is the frame captured for the link preview.
