@@ -31,7 +31,10 @@ function applyLanguage() {
   root.lang = lang;
   root.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.title = t('meta.title');
-  $$('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  $$('[data-i18n]').forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+    el.hidden = el.textContent === ''; // e.g. the verse translation, English only
+  });
   const names = `${t('hero.first')} ${t('hero.second')} ${t('hero.and')} ${t('hero.bride')}`;
   $('[data-names]').setAttribute('aria-label', names);
   $('.ending-names').setAttribute('aria-label', names);

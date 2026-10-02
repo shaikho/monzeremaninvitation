@@ -1,6 +1,6 @@
 # Mohammed Almonzer & Eman · محمد المنذر وإيمان
 
-A cinematic, editorial wedding microsite for **Tuesday 27 October 2026, 7:00 PM** at **Tia Vie, Cairo**.
+A cinematic, editorial wedding microsite for **Tuesday 27 October 2026, 8:00 PM** at **Tia Vie hall, Cairo**.
 English and Arabic (one tap to switch). Built with **Vite**, plain **JavaScript/HTML/CSS** and **Anime.js v4**.
 
 ```bash
@@ -13,14 +13,15 @@ npm run preview    # serves dist/ (static only: /api needs `npm run dev` or Verc
 ## The experience
 
 1. **Opening.** Light opens from the centre of the dark onto sage paper. Generated florals grow in: wisteria racemes unfurl down from the top corners, leaves arrive, white and pink lilies bloom open, and sprays rise at the bottom. Then the names rise letter by letter (*Mohammed / Almonzer / & Eman*) over a gold rule. Any tap skips to the end. Scrolling away parts the florals like curtains.
-2. **Prologue.** Overlapping, asymmetric lily imagery from image 1, with *Two families, one story.*
-3. **The invitation.** One large paragraph that lights up word by word as you read.
-4. **The evening.** A monumental **27** that counts up into place, plus a quiet days / hours / minutes countdown.
-5. **The venue.** Pinned: a small window opens to full bleed as you scroll, then *Tia Vie*, directions and calendar links.
-6. **The order of the evening.** 8:00 PM reception · 9:00 PM the zaffa · 10:00 PM dinner · 12:00 AM the jertig, as large numerals that roll up to each hour.
-7. **Interlude.** A curtain of wisteria grows down, and a bouquet of lilies blooms open.
-8. **A word from you.** A private message to the couple.
-9. **The end.** The florals return, glowing on deep green, with the names like closing credits.
+2. **Bismillah.** The Basmala in gold and the verse from Ar-Rum (30:21) as printed on the invitation, with an English rendering in English mode.
+3. **Prologue.** Overlapping, asymmetric lily imagery from image 1, with *Two families, one story.*
+4. **The invitation.** The four families, the invitation line lighting up word by word, the formal names (م. محمد المنذر و إيمان) and the date line, all as worded on the printed card.
+5. **The evening.** A monumental **27** that counts up into place, plus a quiet days / hours / minutes countdown.
+6. **The venue.** Pinned: a small window opens to full bleed as you scroll, then *Tia Vie*, directions and calendar links. "Venue location" opens the hall's exact pin (from the QR code on the printed card).
+7. **The order of the evening.** 8:00 PM reception · 9:00 PM the zaffa · 10:00 PM dinner · 12:00 AM the jertig, as large numerals that roll up to each hour.
+8. **Interlude.** A curtain of wisteria grows down, and a bouquet of lilies blooms open.
+9. **A word from you.** A private message to the couple.
+10. **The end.** The florals return, glowing on deep green, with the names like closing credits.
 
 The flowers are generated SVG (`src/art/flora.js`, modeled on image 1's lilies, wisteria and leaves). Change a composition's seed in `index.html` (`data-flora="cascade:3"`) to get a different arrangement.
 

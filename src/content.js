@@ -1,11 +1,12 @@
 // Everything a guest reads lives here: event facts, imagery and both languages.
 
 export const EVENT = {
-  // Tuesday 27 October 2026, 7:00 PM Cairo (UTC+3; Egypt's summer time ends on the 29th)
-  start: new Date('2026-10-27T19:00:00+03:00'),
+  // Tuesday 27 October 2026, 8:00 PM Cairo (UTC+3; Egypt's summer time ends on the 29th)
+  start: new Date('2026-10-27T20:00:00+03:00'),
   end: new Date('2026-10-28T01:00:00+03:00'),
   venue: 'Tia Vie, Cairo, Egypt',
-  maps: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Tia Vie, Cairo, Egypt'),
+  // the hall's location, from the QR code on the printed invitation
+  maps: 'https://maps.app.goo.gl/A5SEn3bZmsjEsdBZ6',
 };
 
 // Imagery: crops of image "1" (the arched lily invitation), which also sets the palette.
@@ -44,14 +45,28 @@ export const I18N = {
     'story.line2': 'one story.',
     'story.caption': 'Together with their families, and with hearts full of gratitude.',
 
+    'faith.basmala': 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+    'faith.verse': 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ',
+    'faith.translation': 'Among His signs is that He created for you spouses from among yourselves, that you may find rest in them, and He placed between you love and mercy. Surely in this are signs for people who reflect.',
+    'faith.ref': 'Ar-Rum · 30:21',
+
     'invite.chapter': 'II · The invitation',
-    'invite.text': 'Together with their families, Mohammed Almonzer & Eman request the pleasure of your company as they begin a new chapter together.',
+    'invite.honour': 'With great joy,',
+    'invite.f1': 'The Osman Elhag family',
+    'invite.f2': 'The family of the late Ali Elatta',
+    'invite.f3': 'The family of the late Mirghani Zumrawi',
+    'invite.f4': 'The family of the late Awad Ibrahim',
+    'invite.text': 'invite you to share the joy of a lifetime and celebrate the wedding of their children',
+    'invite.groom': 'Eng. Mohammed Almonzer',
+    'invite.and': '&',
+    'invite.bride': 'Eman',
+    'invite.when': 'God willing, on Tuesday 27/10/2026, at eight o’clock in the evening, at Tia Vie hall, Cairo.',
 
     'eve.chapter': 'III · The evening',
     'eve.day': 'Tuesday',
     'eve.month': 'October',
     'eve.year': '2026',
-    'eve.time': 'Seven o’clock in the evening',
+    'eve.time': 'Eight o’clock in the evening',
     'eve.days': 'days',
     'eve.hours': 'hours',
     'eve.minutes': 'minutes',
@@ -61,8 +76,8 @@ export const I18N = {
     'venue.chapter': 'IV · The venue',
     'venue.name': 'Tia Vie',
     'venue.place': 'Cairo, Egypt',
-    'venue.when': 'Tuesday 27 October · 7:00 PM',
-    'venue.directions': 'Directions',
+    'venue.when': 'Tuesday 27 October · 8:00 PM',
+    'venue.directions': 'Venue location',
     'venue.google': 'Google Calendar',
     'venue.apple': 'Apple Calendar',
 
@@ -104,14 +119,28 @@ export const I18N = {
     'story.line2': 'وحكايةٌ واحدة.',
     'story.caption': 'بكل الحب والسرور، ومع عائلتينا وقلوبٍ ملؤها الامتنان.',
 
+    'faith.basmala': 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+    'faith.verse': 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ',
+    'faith.translation': '',
+    'faith.ref': 'سورة الروم · ٢١',
+
     'invite.chapter': 'الدعوة',
-    'invite.text': 'بكل الحب والسرور، ولأن فرحتنا أجمل بوجودكم، يتشرّف محمد المنذر وإيمان بدعوتكم لحضور حفل زفافهما، وبداية فصلٍ جديد معًا.',
+    'invite.honour': 'يتشرف',
+    'invite.f1': 'آل عثمان الحاج',
+    'invite.f2': 'آل المرحوم علي العطا',
+    'invite.f3': 'آل المرحوم ميرغني زمراوي',
+    'invite.f4': 'آل المرحوم عوض إبراهيم',
+    'invite.text': 'بدعوتكم لمشاركتنا فرحة العمر وحضور حفل زفاف أبنائهم',
+    'invite.groom': 'م. محمد المنذر',
+    'invite.and': 'و',
+    'invite.bride': 'إيمان',
+    'invite.when': 'وذلك بمشيئة الله تعالى يوم الثلاثاء الموافق 27/10/2026 في تمام الساعة الثامنة مساءً في قاعة Tia Vie - القاهرة.',
 
     'eve.chapter': 'الأمسية',
     'eve.day': 'الثلاثاء',
     'eve.month': 'أكتوبر',
     'eve.year': '٢٠٢٦',
-    'eve.time': 'الساعة السابعة مساءً',
+    'eve.time': 'الساعة الثامنة مساءً',
     'eve.days': 'يوم',
     'eve.hours': 'ساعة',
     'eve.minutes': 'دقيقة',
@@ -121,8 +150,8 @@ export const I18N = {
     'venue.chapter': 'المكان',
     'venue.name': 'تيا ڤي',
     'venue.place': 'القاهرة، مصر',
-    'venue.when': 'الثلاثاء ٢٧ أكتوبر · ٧:٠٠ مساءً',
-    'venue.directions': 'الاتجاهات',
+    'venue.when': 'الثلاثاء ٢٧ أكتوبر · ٨:٠٠ مساءً',
+    'venue.directions': 'موقع القاعة',
     'venue.google': 'تقويم Google',
     'venue.apple': 'تقويم Apple',
 
