@@ -1,9 +1,9 @@
 {
   "name": "monzeremaninvitation",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
-  "description": "Wedding invitation — Mohammed Almonzer & Eman · 27.10.2026",
+  "description": "Mohammed Almonzer & Eman · 27.10.2026 — a cinematic wedding microsite",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

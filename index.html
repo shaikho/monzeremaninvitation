@@ -1,168 +1,223 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>محمد المنذر وإيمان · دعوة زفاف</title>
-  <meta name="description" content="الثلاثاء ٢٧ أكتوبر ٢٠٢٦ · ٧:٠٠ مساءً · تيا ڤي، القاهرة — Tuesday 27 October 2026 · 7:00 PM · Tia Vie, Cairo" />
-  <meta name="theme-color" content="#a7b86a" />
+  <title>Mohammed Almonzer & Eman · 27.10.2026</title>
+  <meta name="description" content="Tuesday 27 October 2026 · 7:00 PM · Tia Vie, Cairo — الثلاثاء ٢٧ أكتوبر ٢٠٢٦ · تيا ڤي، القاهرة" />
+  <meta name="theme-color" content="#2a1d1e" />
 
-  <!-- Link preview (WhatsApp, iMessage, Telegram, X). Update the domain if it changes. -->
-  <meta property="og:title" content="دعوة زفاف محمد المنذر وإيمان · Mohammed Almonzer & Eman" />
-  <meta property="og:description" content="الثلاثاء ٢٧ أكتوبر ٢٠٢٦ · Tuesday 27 Oct 2026 · Tia Vie, Cairo" />
+  <!-- Link preview (WhatsApp, iMessage, Telegram, X). Absolute URLs: update if the domain changes. -->
+  <meta property="og:title" content="Mohammed Almonzer & Eman · محمد المنذر وإيمان" />
+  <meta property="og:description" content="Tuesday 27 Oct 2026 · 7:00 PM · Tia Vie, Cairo" />
   <meta property="og:url" content="https://monzeremaninvitation.vercel.app/" />
-  <meta property="og:image" content="https://monzeremaninvitation.vercel.app/og-invitation.jpg" />
+  <meta property="og:image" content="https://monzeremaninvitation.vercel.app/og-film.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://monzeremaninvitation.vercel.app/og-invitation.jpg" />
+  <meta name="twitter:image" content="https://monzeremaninvitation.vercel.app/og-film.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=El+Messiri:wght@400;500;600&family=Great+Vibes&family=Marcellus&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="/images/flora-macro.webp" type="image/webp" />
 </head>
-<body class="locked">
+<body class="is-intro">
 
-  <!-- ============ Opener: a mosaic medallion that bursts apart ============ -->
-  <div class="opener" role="dialog" aria-modal="true">
-    <div class="opener-medallion">
-      <svg class="mosaic" viewBox="-200 -200 400 400" aria-hidden="true"><g class="tiles"></g></svg>
-      <button class="opener-mono" type="button" aria-label="Open the invitation">
-        <span class="mono">M<span class="amp">&amp;</span>E</span>
+  <!-- Fixed, minimal chrome -->
+  <header class="chrome" data-tone="light">
+    <a class="chrome-mark" href="#top" aria-label="Mohammed Almonzer & Eman">M<i>&amp;</i>E</a>
+    <div class="chrome-actions">
+      <button class="chrome-btn" id="soundBtn" type="button" aria-pressed="false">
+        <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span data-i18n="ui.sound"></span>
       </button>
+      <button class="chrome-btn" id="langBtn" type="button" data-i18n="ui.lang"></button>
     </div>
-    <div class="opener-copy">
-      <p class="opener-tap" data-i18n="opener.tap"></p>
-      <p class="opener-sub" data-i18n="opener.sub"></p>
-    </div>
-  </div>
-
-  <button class="lang" id="langToggle" type="button" data-i18n="ui.lang"></button>
+  </header>
 
   <main>
-    <!-- ============ 1 · The portal: scroll walks you through the arch ============ -->
-    <section class="portal-wrap" id="welcome">
-      <div class="portal-sticky">
-        <div class="portal-scene">
-          <div class="portal-art" data-art="portal"></div>
-          <div class="wis wis-l" data-art="wisteria" aria-hidden="true"></div>
-          <div class="wis wis-r" data-art="wisteria2" aria-hidden="true"></div>
-          <div class="lilies lilies-l" data-art="bouquet" aria-hidden="true"></div>
-          <div class="lilies lilies-r" data-art="bouquet2" aria-hidden="true"></div>
-          <div class="portal-text">
-            <div class="qf-mono"><span class="mono">M<span class="amp">&amp;</span>E</span></div>
-            <p class="p-kicker" data-i18n="hero.together"></p>
-            <p class="p-name" data-i18n="hero.groom"></p>
-            <p class="p-and" data-i18n="hero.and"></p>
-            <p class="p-name" data-i18n="hero.bride"></p>
-            <p class="p-date">27 · 10 · 2026</p>
-          </div>
+    <!-- ═══ 1 · Opening ═══ -->
+    <section class="hero" id="top" data-tone="light" data-tone-desktop="dark">
+      <div class="hero-media">
+        <div class="hero-frame">
+          <div class="hero-lqip" data-lqip="flora-macro"></div>
+          <picture>
+            <source srcset="/images/flora-macro.webp" type="image/webp" />
+            <img class="hero-img" src="/images/flora-macro.jpg" width="370" height="560" alt="" fetchpriority="high" decoding="async" />
+          </picture>
         </div>
-        <p class="portal-cue"><span data-i18n="hero.scroll"></span><i></i></p>
+        <div class="hero-veil" aria-hidden="true"></div>
       </div>
-    </section>
 
-    <!-- ============ 2 · The invitation card ============ -->
-    <section class="card-sec" id="invitation">
-      <div class="card-bouquet" data-art="bouquet3" aria-hidden="true"></div>
-      <article class="card">
-        <div class="card-rays" aria-hidden="true"></div>
-        <div class="qf-mono big reveal"><span class="mono">M<span class="amp">&amp;</span>E</span></div>
-        <p class="c-invite reveal" data-i18n="hero.invite"></p>
-        <div class="flourish reveal" aria-hidden="true"><i></i><b>✦</b><i></i></div>
-        <h1 class="c-names">
-          <span class="c-name reveal-name" data-i18n="hero.groom"></span>
-          <span class="c-and reveal"><i></i><span data-i18n="hero.and"></span><i></i></span>
-          <span class="c-name reveal-name" data-i18n="hero.bride"></span>
+      <div class="hero-copy">
+        <p class="hero-kicker" data-i18n="hero.kicker"></p>
+        <h1 class="names" data-names>
+          <span class="names-line names-first" data-i18n="hero.first"></span>
+          <span class="names-line names-second" data-i18n="hero.second"></span>
+          <span class="names-line names-amp" data-i18n="hero.and"></span>
+          <span class="names-line names-bride" data-i18n="hero.bride"></span>
         </h1>
-        <div class="date-row reveal">
-          <span class="dr-side" data-i18n="date.day"></span>
-          <span class="dr-mid"><b data-i18n="date.num"></b><small data-i18n="date.month"></small></span>
-          <span class="dr-side" data-i18n="date.time"></span>
-        </div>
-        <p class="c-venue reveal">TIA VIE</p>
-        <p class="c-place reveal" data-i18n="venue.place"></p>
-        <div class="flourish reveal" aria-hidden="true"><i></i><b>✦</b><i></i></div>
-      </article>
-    </section>
-
-    <!-- ============ 3 · Countdown in mosaic tiles ============ -->
-    <section class="count-sec" id="countdown">
-      <h2 class="sec-title reveal" data-i18n="count.title"></h2>
-      <div class="count">
-        <div class="count-tile reveal"><span class="num" data-unit="days">00</span><span class="lbl" data-i18n="count.days"></span></div>
-        <div class="count-tile reveal"><span class="num" data-unit="hours">00</span><span class="lbl" data-i18n="count.hours"></span></div>
-        <div class="count-tile reveal"><span class="num" data-unit="minutes">00</span><span class="lbl" data-i18n="count.minutes"></span></div>
+        <p class="hero-date" data-i18n="hero.date"></p>
       </div>
-      <p class="count-done" hidden data-i18n="count.done"></p>
-    </section>
 
-    <!-- ============ 4 · The evening: a horizontal gallery driven by vertical scroll ============ -->
-    <section class="eve" id="evening">
-      <div class="eve-sticky">
-        <header class="eve-head">
-          <p class="kicker" data-i18n="eve.kicker"></p>
-          <h2 class="sec-title" data-i18n="eve.title"></h2>
-          <p class="eve-hint" data-i18n="eve.hint"></p>
-        </header>
-        <div class="eve-viewport">
-          <ol class="eve-track">
-            <li class="eve-card"><div class="eve-icon" data-vig="arrive"></div><time data-i18n="eve.t1"></time><p data-i18n="eve.e1"></p></li>
-            <li class="eve-card"><div class="eve-icon" data-vig="zaffa"></div><time data-i18n="eve.t2"></time><p data-i18n="eve.e2"></p></li>
-            <li class="eve-card"><div class="eve-icon" data-vig="dinner"></div><time data-i18n="eve.t3"></time><p data-i18n="eve.e3"></p></li>
-            <li class="eve-card"><div class="eve-icon" data-vig="cake"></div><time data-i18n="eve.t4"></time><p data-i18n="eve.e4"></p></li>
-            <li class="eve-card"><div class="eve-icon" data-vig="farewell"></div><time data-i18n="eve.t5"></time><p data-i18n="eve.e5"></p></li>
-          </ol>
-        </div>
-        <div class="eve-progress" aria-hidden="true"><i></i></div>
+      <div class="scroll-cue" aria-hidden="true">
+        <span data-i18n="ui.scroll"></span>
+        <i class="scroll-cue-line"></i>
       </div>
     </section>
 
-    <!-- ============ 5 · Venue in an arched window ============ -->
-    <section class="venue-sec" id="venue">
-      <div class="window reveal">
-        <div class="window-wis l" data-art="wisteria3" aria-hidden="true"></div>
-        <div class="window-wis r" data-art="wisteria4" aria-hidden="true"></div>
-        <p class="kicker" data-i18n="venue.kicker"></p>
-        <h2 class="venue-name" data-i18n="venue.name"></h2>
-        <p class="venue-place" data-i18n="venue.place"></p>
-        <p class="venue-when" data-i18n="venue.when"></p>
-        <div class="venue-actions">
-          <a class="btn" id="directionsBtn" target="_blank" rel="noopener"><span data-i18n="venue.directions"></span></a>
-          <a class="btn ghost" id="googleCalBtn" target="_blank" rel="noopener"><span data-i18n="venue.google"></span></a>
-          <a class="btn ghost" href="/wedding.ics"><span data-i18n="venue.ical"></span></a>
+    <!-- ═══ 2 · Prologue: photographic story ═══ -->
+    <section class="story" id="story" data-tone="dark">
+      <p class="chapter" data-i18n="story.chapter"></p>
+      <div class="story-stage">
+        <figure class="story-a" data-reveal-clip>
+          <picture>
+            <source srcset="/images/flora-panel.webp" type="image/webp" />
+            <img src="/images/flora-panel.jpg" width="300" height="1280" alt="" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+        <figure class="story-b" data-parallax="-18">
+          <picture>
+            <source srcset="/images/lilies-top.webp" type="image/webp" />
+            <img src="/images/lilies-top.jpg" width="288" height="540" alt="" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+        <h2 class="story-title">
+          <span class="story-line" data-parallax="5" data-i18n="story.line1"></span>
+          <span class="story-line story-line--em" data-parallax="-5" data-i18n="story.line2"></span>
+        </h2>
+        <p class="story-caption" data-fade data-i18n="story.caption"></p>
+      </div>
+    </section>
+
+    <!-- ═══ 3 · The invitation (words light up as you read) ═══ -->
+    <section class="invite" id="invitation" data-tone="dark">
+      <p class="chapter" data-i18n="invite.chapter"></p>
+      <p class="invite-text" data-words data-i18n="invite.text"></p>
+      <figure class="invite-leaf" data-parallax="-24" aria-hidden="true">
+        <picture>
+          <source srcset="/images/flora-leaves.webp" type="image/webp" />
+          <img src="/images/flora-leaves.jpg" width="285" height="520" alt="" loading="lazy" decoding="async" />
+        </picture>
+      </figure>
+    </section>
+
+    <!-- ═══ 4 · The evening ═══ -->
+    <section class="evening" id="evening" data-tone="dark">
+      <p class="chapter" data-i18n="eve.chapter"></p>
+      <div class="eve-grid">
+        <p class="eve-day" data-fade data-i18n="eve.day"></p>
+        <p class="eve-num" aria-label="27"><span data-count="27">27</span></p>
+        <p class="eve-month" data-fade><span data-i18n="eve.month"></span> <span data-i18n="eve.year"></span></p>
+        <p class="eve-time" data-fade data-i18n="eve.time"></p>
+      </div>
+      <div class="countdown" data-fade>
+        <div class="cd-unit"><b data-cd="days">00</b><span data-i18n="eve.days"></span></div>
+        <div class="cd-unit"><b data-cd="hours">00</b><span data-i18n="eve.hours"></span></div>
+        <div class="cd-unit"><b data-cd="minutes">00</b><span data-i18n="eve.minutes"></span></div>
+        <p class="cd-until" data-i18n="eve.until"></p>
+      </div>
+    </section>
+
+    <!-- ═══ 5 · Venue reveal (sticky) ═══ -->
+    <section class="venue" id="venue" data-tone="light">
+      <div class="venue-sticky">
+        <div class="venue-window">
+          <picture>
+            <source srcset="/images/lilies-low.webp" type="image/webp" />
+            <img class="venue-img" src="/images/lilies-low.jpg" width="330" height="350" alt="" loading="lazy" decoding="async" />
+          </picture>
+          <div class="venue-shade" aria-hidden="true"></div>
+        </div>
+        <div class="venue-copy">
+          <p class="chapter chapter--light" data-i18n="venue.chapter"></p>
+          <h2 class="venue-name" data-i18n="venue.name"></h2>
+          <p class="venue-place" data-i18n="venue.place"></p>
+          <p class="venue-when" data-i18n="venue.when"></p>
+          <nav class="venue-links">
+            <a id="mapsLink" target="_blank" rel="noopener"><span data-i18n="venue.directions"></span><i aria-hidden="true">↗</i></a>
+            <a id="gcalLink" target="_blank" rel="noopener"><span data-i18n="venue.google"></span><i aria-hidden="true">↗</i></a>
+            <a href="/wedding.ics"><span data-i18n="venue.apple"></span><i aria-hidden="true">↓</i></a>
+          </nav>
         </div>
       </div>
     </section>
 
-    <!-- ============ 6 · Private message to the couple ============ -->
-    <section class="msg-sec" id="message">
-      <p class="kicker reveal" data-i18n="msg.kicker"></p>
-      <h2 class="sec-title reveal" data-i18n="msg.title"></h2>
-      <p class="msg-lead reveal" data-i18n="msg.lead"></p>
-      <form class="msg-form reveal" id="msgForm" novalidate>
-        <label for="guestName" data-i18n="msg.nameLabel"></label>
-        <input id="guestName" type="text" autocomplete="name" maxlength="80" data-i18n-ph="msg.namePh" />
-        <label for="guestMsg" data-i18n="msg.msgLabel"></label>
-        <textarea id="guestMsg" rows="5" maxlength="1000" data-i18n-ph="msg.msgPh"></textarea>
-        <button class="btn" type="submit"><span data-i18n="msg.send"></span></button>
-        <p class="form-msg" role="status" aria-live="polite"></p>
+    <!-- ═══ 6 · The order of the evening ═══ -->
+    <section class="schedule" id="schedule" data-tone="light">
+      <p class="chapter chapter--light" data-i18n="sched.chapter"></p>
+      <ol class="sched-list"></ol>
+    </section>
+
+    <!-- ═══ 7 · In print ═══ -->
+    <section class="paper" id="paper" data-tone="dark">
+      <p class="chapter" data-i18n="paper.chapter"></p>
+      <div class="paper-stage">
+        <figure class="paper-sheet paper-sheet--a" data-drift="-1">
+          <picture>
+            <source srcset="/images/1.webp" type="image/webp" />
+            <img src="/images/1.jpg" width="854" height="1280" alt="The floral invitation card" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+        <figure class="paper-sheet paper-sheet--b" data-drift="1">
+          <picture>
+            <source srcset="/images/2.webp" type="image/webp" />
+            <img src="/images/2.jpg" width="854" height="1280" alt="The arched invitation card" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+      </div>
+      <p class="paper-caption" data-fade data-i18n="paper.caption"></p>
+    </section>
+
+    <!-- ═══ 8 · A word from you ═══ -->
+    <section class="note" id="note" data-tone="dark">
+      <p class="chapter" data-i18n="msg.chapter"></p>
+      <h2 class="note-title" data-fade data-i18n="msg.title"></h2>
+      <p class="note-lead" data-fade data-i18n="msg.lead"></p>
+      <form class="note-form" id="noteForm" novalidate>
+        <label class="field">
+          <span data-i18n="msg.name"></span>
+          <input name="name" type="text" maxlength="80" autocomplete="name" required />
+        </label>
+        <label class="field">
+          <span data-i18n="msg.message"></span>
+          <textarea name="message" rows="4" maxlength="1000" required></textarea>
+        </label>
+        <div class="note-actions">
+          <p class="note-status" role="status" aria-live="polite"></p>
+          <button class="note-send" type="submit"><span data-i18n="msg.send"></span><i aria-hidden="true">→</i></button>
+        </div>
       </form>
-      <div class="msg-done" hidden>
-        <div class="qf-mono"><span class="mono">M<span class="amp">&amp;</span>E</span></div>
-        <p class="thanks"></p>
-        <p class="thanks-sub" data-i18n="msg.thanksSub"></p>
+      <div class="note-thanks" hidden>
+        <p class="note-thanks-title"></p>
+        <p class="note-thanks-sub" data-i18n="msg.thanksSub"></p>
       </div>
     </section>
 
-    <footer class="foot">
-      <div class="flourish" aria-hidden="true"><i></i><b>✦</b><i></i></div>
-      <p class="foot-line" data-i18n="foot.line"></p>
-      <p class="p-date">27 · 10 · 2026</p>
-    </footer>
+    <!-- ═══ 9 · Closing ═══ -->
+    <section class="ending" id="ending" data-tone="light">
+      <div class="ending-media">
+        <picture>
+          <source srcset="/images/flora-panel.webp" type="image/webp" />
+          <img class="ending-img" src="/images/flora-panel.jpg" width="300" height="1280" alt="" loading="lazy" decoding="async" />
+        </picture>
+        <div class="ending-veil" aria-hidden="true"></div>
+      </div>
+      <div class="ending-copy">
+        <p class="ending-names" aria-label="Mohammed Almonzer & Eman">
+          <span class="ending-line" data-i18n="hero.first"></span>
+          <span class="ending-line" data-i18n="hero.second"></span>
+          <span class="ending-line ending-amp" data-i18n="hero.and"></span>
+          <span class="ending-line" data-i18n="hero.bride"></span>
+        </p>
+        <p class="ending-tag" data-i18n="end.line"></p>
+        <p class="ending-sign"><span data-i18n="end.sign"></span> · 27.10.2026</p>
+      </div>
+    </section>
   </main>
 
   <script type="module" src="/src/main.js"></script>
