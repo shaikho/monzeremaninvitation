@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Messages · Mohammed Almonzer & Eman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --linen: #d6e6c6; --ink: #3e4a32; --ink-soft: #66704f; --gold: #b48a4a; --sage: #6d8442; --line: #cfc6a8; --card: #f3ecd6; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; background: var(--linen); color: var(--ink);
+      font-family: 'EB Garamond', 'Noto Naskh Arabic', serif; font-size: 18px;
+      background-image: repeating-linear-gradient(0deg, rgba(160,140,110,.05) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(90deg, rgba(160,140,110,.04) 0 1px, transparent 1px 4px);
+    }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 40px 16px 60px; }
+    header { text-align: center; margin-bottom: 20px; }
+    .mono-logo { font-family: 'Great Vibes', cursive; font-size: 64px; line-height: 1; color: #3e562b; }
+    .mono-logo span { font-size: .5em; color: #9c4f87; }
+    h1 { margin: 4px 0 0; font-weight: 600; font-size: 26px; letter-spacing: .06em; }
+    .stats { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 18px 0 8px; }
+    .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 18px; min-width: 120px; }
+    .stat b { display: block; font-size: 34px; line-height: 1.1; color: var(--sage); font-family: 'Marcellus', serif; font-weight: 400; }
+    .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 16px 0 6px; }
+    input[type=search] { flex: 1; min-width: 180px; height: 42px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: inherit; }
+    button { height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--gold); background: var(--card); font: 600 16px 'EB Garamond', serif; cursor: pointer; color: var(--ink); }
+    .updated { font-size: 14px; color: var(--ink-soft); margin: 4px 0 14px; }
+
+    .list { display: flex; flex-direction: column; gap: 14px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: 0 4px 14px rgba(90,70,40,.06); }
+    .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .sender { font-family: 'Noto Naskh Arabic', 'EB Garamond', serif; font-size: 21px; font-weight: 700; unicode-bidi: plaintext; }
+    .n { color: var(--gold); font-size: 15px; margin-inline-end: 6px; font-weight: 600; }
+    .when { font-size: 15px; color: var(--ink-soft); white-space: nowrap; }
+    .message { margin: 10px 0 12px; font-family: 'Noto Naskh Arabic', 'EB Garamond', serif; font-size: 19px; line-height: 1.7; white-space: pre-wrap; unicode-bidi: plaintext; }
+    .message.empty { color: var(--ink-soft); font-style: italic; font-size: 16px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #f1e9da; border: 1px solid var(--line); font-size: 14px; color: var(--ink); direction: ltr; }
+    .chip i { font-style: normal; color: var(--ink-soft); }
+    details { margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
+    summary { cursor: pointer; }
+    details code { display: block; margin-top: 6px; padding: 8px 10px; background: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: 12.5px; word-break: break-all; direction: ltr; text-align: left; }
+    .empty-state { text-align: center; padding: 40px 10px; color: var(--ink-soft); font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="mono-logo">M<span>&amp;</span>E</div>
+      <h1>Messages · رسائل الضيوف</h1>
+      <div class="stats">
+        <div class="stat"><b id="total">–</b>Messages</div>
+        <div class="stat"><b id="senders">–</b>Senders</div>
+        <div class="stat"><b id="ips">–</b>Unique IPs</div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search name, message, IP, browser… / بحث" />
+      <button type="button" id="refresh">Refresh</button>
+      <button type="button" id="csv">Download CSV</button>
+    </div>
+    <p class="updated" id="updated"></p>
+
+    <div class="list" id="list"><p class="empty-state">Loading…</p></div>
+  </div>
+
+  <script>
+    let data = [];
+    const listEl = document.getElementById('list');
+    const q = document.getElementById('q');
+
+    // Turn a user-agent string into "Chrome 128 · Android 14 · Phone"
+    function describeUA(ua = '') {
+      const pick = (re) => { const m = ua.match(re); return m ? m[1] : ''; };
+      let browser = 'Unknown browser';
+      if (/FBAN|FBAV/.test(ua)) browser = 'Facebook in-app';
+      else if (/Instagram/.test(ua)) browser = 'Instagram in-app';
+      else if (/Snapchat/.test(ua)) browser = 'Snapchat in-app';
+      else if (/TikTok|musical_ly/.test(ua)) browser = 'TikTok in-app';
+      else if (/WhatsApp/.test(ua)) browser = 'WhatsApp';
+      else if (/Edg\//.test(ua)) browser = 'Edge ' + pick(/Edg\/(\d+)/);
+      else if (/OPR\/|Opera/.test(ua)) browser = 'Opera ' + pick(/OPR\/(\d+)/);
+      else if (/SamsungBrowser/.test(ua)) browser = 'Samsung Internet ' + pick(/SamsungBrowser\/(\d+)/);
+      else if (/CriOS/.test(ua)) browser = 'Chrome (iOS) ' + pick(/CriOS\/(\d+)/);
+      else if (/FxiOS/.test(ua)) browser = 'Firefox (iOS) ' + pick(/FxiOS\/(\d+)/);
+      else if (/Firefox\//.test(ua)) browser = 'Firefox ' + pick(/Firefox\/(\d+)/);
+      else if (/Chrome\//.test(ua)) browser = 'Chrome ' + pick(/Chrome\/(\d+)/);
+      else if (/Safari\//.test(ua)) browser = 'Safari ' + pick(/Version\/(\d+(?:\.\d+)?)/);
+
+      let os = '';
+      if (/iPhone/.test(ua)) os = 'iOS ' + pick(/OS (\d+(?:_\d+)?)/).replace('_', '.');
+      else if (/iPad/.test(ua)) os = 'iPadOS ' + pick(/OS (\d+(?:_\d+)?)/).replace('_', '.');
+      else if (/Android/.test(ua)) os = 'Android ' + pick(/Android (\d+(?:\.\d+)?)/);
+      else if (/Windows NT/.test(ua)) os = 'Windows';
+      else if (/Mac OS X/.test(ua)) os = 'macOS';
+      else if (/CrOS/.test(ua)) os = 'ChromeOS';
+      else if (/Linux/.test(ua)) os = 'Linux';
+
+      const device = /iPad|Tablet/.test(ua) ? 'Tablet' : /Mobi|iPhone|Android/.test(ua) ? 'Phone' : ua ? 'Desktop' : '';
+      const model = pick(/Android [\d.]+; ([^;)]+?)(?: Build|\))/);
+      return [browser.trim(), os.trim(), model && model !== 'K' ? model : '', device].filter(Boolean).join(' · ');
+    }
+    const flag = (cc) => (cc && /^[A-Z]{2}$/.test(cc)) ? String.fromCodePoint(...[...cc].map((c) => 127397 + c.charCodeAt(0))) : '';
+    const place = (g = {}) => [g.city, g.region, g.country].filter(Boolean).join(', ');
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const chip = (label, value) => { const c = el('span', 'chip'); c.append(el('i', null, label), document.createTextNode(value)); return c; };
+
+    function render() {
+      const term = q.value.trim().toLowerCase();
+      const rows = data.map((d, i) => ({ ...d, i: i + 1 }))
+        .filter((d) => !term || [d.name, d.message, d.ip, d.ua, place(d.geo)].join(' ').toLowerCase().includes(term));
+      document.getElementById('total').textContent = data.filter((d) => d.message).length;
+      document.getElementById('senders').textContent = new Set(data.map((d) => (d.name || '').trim().toLowerCase())).size;
+      document.getElementById('ips').textContent = new Set(data.map((d) => d.ip).filter(Boolean)).size;
+
+      listEl.replaceChildren();
+      if (!rows.length) { listEl.append(el('p', 'empty-state', data.length ? 'No matches' : 'No messages yet')); return; }
+
+      for (const d of rows.reverse()) {
+        const card = el('article', 'card');
+        const head = el('div', 'card-head');
+        const who = el('div');
+        who.append(el('span', 'n', '#' + d.i), el('span', 'sender', d.name || '—'));
+        head.append(who, el('span', 'when', new Date(d.at).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })));
+        card.append(head);
+
+        if (d.legacy) card.append(el('p', 'message empty', 'RSVP from the earlier version of the site (name only)'));
+        else card.append(el('p', 'message', d.message));
+
+        const meta = el('div', 'meta');
+        if (d.ip) meta.append(chip('IP', `${d.ip}${d.geo && place(d.geo) ? `  ${flag(d.geo.country)} ${place(d.geo)}` : ''}`));
+        if (d.ua) meta.append(chip('Browser', describeUA(d.ua)));
+        if (d.client?.screen) meta.append(chip('Screen', d.client.screen));
+        if (d.client?.tz) meta.append(chip('Time zone', d.client.tz));
+        if (d.client?.lang) meta.append(chip('Language', d.client.lang));
+        if (d.lang) meta.append(chip('Site', d.lang.toUpperCase()));
+        if (meta.childElementCount) card.append(meta);
+
+        if (d.ua || d.client) {
+          const det = el('details');
+          det.append(el('summary', null, 'Technical details'));
+          const lines = [
+            d.ua && `User-agent: ${d.ua}`,
+            d.client?.platform && `Platform: ${d.client.platform}`,
+            d.client && d.client.touch != null && `Touch points: ${d.client.touch}`,
+          ].filter(Boolean).join('\n');
+          const code = el('code', null, lines);
+          code.style.whiteSpace = 'pre-wrap';
+          det.append(code);
+          card.append(det);
+        }
+        listEl.append(card);
+      }
+    }
+
+    async function load() {
+      try {
+        data = await (await fetch('/api/messages', { cache: 'no-store' })).json();
+        if (!Array.isArray(data)) throw new Error('bad response');
+        document.getElementById('updated').textContent = 'Updated ' + new Date().toLocaleTimeString('en-GB');
+        render();
+      } catch {
+        document.getElementById('updated').textContent = 'Could not load the messages.';
+      }
+    }
+
+    document.getElementById('csv').addEventListener('click', () => {
+      const esc = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+      const head = ['#', 'Name', 'Message', 'When', 'IP', 'Country', 'Region', 'City', 'Browser', 'User-agent', 'Screen', 'Time zone', 'Language', 'Platform', 'Site language'];
+      const rows = data.map((d, i) => [i + 1, d.name, d.message, d.at, d.ip, d.geo?.country, d.geo?.region, d.geo?.city,
+        describeUA(d.ua), d.ua, d.client?.screen, d.client?.tz, d.client?.lang, d.client?.platform, d.lang].map(esc).join(','));
+      const csv = '﻿' + [head.join(','), ...rows].join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = 'messages.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+    document.getElementById('refresh').addEventListener('click', load);
+    q.addEventListener('input', render);
+    load();
+    setInterval(load, 20000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>محمد المنذر وإيمان · دعوة زفاف</title>
+  <meta name="description" content="الثلاثاء ٢٧ أكتوبر ٢٠٢٦ · ٧:٠٠ مساءً · تيا ڤي، القاهرة — Tuesday 27 October 2026 · 7:00 PM · Tia Vie, Cairo" />
+  <meta name="theme-color" content="#a7b86a" />
+
+  <!-- Link preview (WhatsApp, iMessage, Telegram, X). Update the domain if it changes. -->
+  <meta property="og:title" content="دعوة زفاف محمد المنذر وإيمان · Mohammed Almonzer & Eman" />
+  <meta property="og:description" content="الثلاثاء ٢٧ أكتوبر ٢٠٢٦ · Tuesday 27 Oct 2026 · Tia Vie, Cairo" />
+  <meta property="og:url" content="https://monzeremaninvitation.vercel.app/" />
+  <meta property="og:image" content="https://monzeremaninvitation.vercel.app/og-invitation.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://monzeremaninvitation.vercel.app/og-invitation.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=El+Messiri:wght@400;500;600&family=Great+Vibes&family=Marcellus&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="locked">
+
+  <!-- ============ Opener: a mosaic medallion that bursts apart ============ -->
+  <div class="opener" role="dialog" aria-modal="true">
+    <div class="opener-medallion">
+      <svg class="mosaic" viewBox="-200 -200 400 400" aria-hidden="true"><g class="tiles"></g></svg>
+      <button class="opener-mono" type="button" aria-label="Open the invitation">
+        <span class="mono">M<span class="amp">&amp;</span>E</span>
+      </button>
+    </div>
+    <div class="opener-copy">
+      <p class="opener-tap" data-i18n="opener.tap"></p>
+      <p class="opener-sub" data-i18n="opener.sub"></p>
+    </div>
+  </div>
+
+  <button class="lang" id="langToggle" type="button" data-i18n="ui.lang"></button>
+
+  <main>
+    <!-- ============ 1 · The portal: scroll walks you through the arch ============ -->
+    <section class="portal-wrap" id="welcome">
+      <div class="portal-sticky">
+        <div class="portal-scene">
+          <div class="portal-art" data-art="portal"></div>
+          <div class="wis wis-l" data-art="wisteria" aria-hidden="true"></div>
+          <div class="wis wis-r" data-art="wisteria2" aria-hidden="true"></div>
+          <div class="lilies lilies-l" data-art="bouquet" aria-hidden="true"></div>
+          <div class="lilies lilies-r" data-art="bouquet2" aria-hidden="true"></div>
+          <div class="portal-text">
+            <div class="qf-mono"><span class="mono">M<span class="amp">&amp;</span>E</span></div>
+            <p class="p-kicker" data-i18n="hero.together"></p>
+            <p class="p-name" data-i18n="hero.groom"></p>
+            <p class="p-and" data-i18n="hero.and"></p>
+            <p class="p-name" data-i18n="hero.bride"></p>
+            <p class="p-date">27 · 10 · 2026</p>
+          </div>
+        </div>
+        <p class="portal-cue"><span data-i18n="hero.scroll"></span><i></i></p>
+      </div>
+    </section>
+
+    <!-- ============ 2 · The invitation card ============ -->
+    <section class="card-sec" id="invitation">
+      <div class="card-bouquet" data-art="bouquet3" aria-hidden="true"></div>
+      <article class="card">
+        <div class="card-rays" aria-hidden="true"></div>
+        <div class="qf-mono big reveal"><span class="mono">M<span class="amp">&amp;</span>E</span></div>
+        <p class="c-invite reveal" data-i18n="hero.invite"></p>
+        <div class="flourish reveal" aria-hidden="true"><i></i><b>✦</b><i></i></div>
+        <h1 class="c-names">
+          <span class="c-name reveal-name" data-i18n="hero.groom"></span>
+          <span class="c-and reveal"><i></i><span data-i18n="hero.and"></span><i></i></span>
+          <span class="c-name reveal-name" data-i18n="hero.bride"></span>
+        </h1>
+        <div class="date-row reveal">
+          <span class="dr-side" data-i18n="date.day"></span>
+          <span class="dr-mid"><b data-i18n="date.num"></b><small data-i18n="date.month"></small></span>
+          <span class="dr-side" data-i18n="date.time"></span>
+        </div>
+        <p class="c-venue reveal">TIA VIE</p>
+        <p class="c-place reveal" data-i18n="venue.place"></p>
+        <div class="flourish reveal" aria-hidden="true"><i></i><b>✦</b><i></i></div>
+      </article>
+    </section>
+
+    <!-- ============ 3 · Countdown in mosaic tiles ============ -->
+    <section class="count-sec" id="countdown">
+      <h2 class="sec-title reveal" data-i18n="count.title"></h2>
+      <div class="count">
+        <div class="count-tile reveal"><span class="num" data-unit="days">00</span><span class="lbl" data-i18n="count.days"></span></div>
+        <div class="count-tile reveal"><span class="num" data-unit="hours">00</span><span class="lbl" data-i18n="count.hours"></span></div>
+        <div class="count-tile reveal"><span class="num" data-unit="minutes">00</span><span class="lbl" data-i18n="count.minutes"></span></div>
+      </div>
+      <p class="count-done" hidden data-i18n="count.done"></p>
+    </section>
+
+    <!-- ============ 4 · The evening: a horizontal gallery driven by vertical scroll ============ -->
+    <section class="eve" id="evening">
+      <div class="eve-sticky">
+        <header class="eve-head">
+          <p class="kicker" data-i18n="eve.kicker"></p>
+          <h2 class="sec-title" data-i18n="eve.title"></h2>
+          <p class="eve-hint" data-i18n="eve.hint"></p>
+        </header>
+        <div class="eve-viewport">
+          <ol class="eve-track">
+            <li class="eve-card"><div class="eve-icon" data-vig="arrive"></div><time data-i18n="eve.t1"></time><p data-i18n="eve.e1"></p></li>
+            <li class="eve-card"><div class="eve-icon" data-vig="zaffa"></div><time data-i18n="eve.t2"></time><p data-i18n="eve.e2"></p></li>
+            <li class="eve-card"><div class="eve-icon" data-vig="dinner"></div><time data-i18n="eve.t3"></time><p data-i18n="eve.e3"></p></li>
+            <li class="eve-card"><div class="eve-icon" data-vig="cake"></div><time data-i18n="eve.t4"></time><p data-i18n="eve.e4"></p></li>
+            <li class="eve-card"><div class="eve-icon" data-vig="farewell"></div><time data-i18n="eve.t5"></time><p data-i18n="eve.e5"></p></li>
+          </ol>
+        </div>
+        <div class="eve-progress" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · Venue in an arched window ============ -->
+    <section class="venue-sec" id="venue">
+      <div class="window reveal">
+        <div class="window-wis l" data-art="wisteria3" aria-hidden="true"></div>
+        <div class="window-wis r" data-art="wisteria4" aria-hidden="true"></div>
+        <p class="kicker" data-i18n="venue.kicker"></p>
+        <h2 class="venue-name" data-i18n="venue.name"></h2>
+        <p class="venue-place" data-i18n="venue.place"></p>
+        <p class="venue-when" data-i18n="venue.when"></p>
+        <div class="venue-actions">
+          <a class="btn" id="directionsBtn" target="_blank" rel="noopener"><span data-i18n="venue.directions"></span></a>
+          <a class="btn ghost" id="googleCalBtn" target="_blank" rel="noopener"><span data-i18n="venue.google"></span></a>
+          <a class="btn ghost" href="/wedding.ics"><span data-i18n="venue.ical"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6 · Private message to the couple ============ -->
+    <section class="msg-sec" id="message">
+      <p class="kicker reveal" data-i18n="msg.kicker"></p>
+      <h2 class="sec-title reveal" data-i18n="msg.title"></h2>
+      <p class="msg-lead reveal" data-i18n="msg.lead"></p>
+      <form class="msg-form reveal" id="msgForm" novalidate>
+        <label for="guestName" data-i18n="msg.nameLabel"></label>
+        <input id="guestName" type="text" autocomplete="name" maxlength="80" data-i18n-ph="msg.namePh" />
+        <label for="guestMsg" data-i18n="msg.msgLabel"></label>
+        <textarea id="guestMsg" rows="5" maxlength="1000" data-i18n-ph="msg.msgPh"></textarea>
+        <button class="btn" type="submit"><span data-i18n="msg.send"></span></button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+      <div class="msg-done" hidden>
+        <div class="qf-mono"><span class="mono">M<span class="amp">&amp;</span>E</span></div>
+        <p class="thanks"></p>
+        <p class="thanks-sub" data-i18n="msg.thanksSub"></p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <div class="flourish" aria-hidden="true"><i></i><b>✦</b><i></i></div>
+      <p class="foot-line" data-i18n="foot.line"></p>
+      <p class="p-date">27 · 10 · 2026</p>
+    </footer>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
