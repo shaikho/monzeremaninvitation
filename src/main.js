@@ -6,6 +6,7 @@ import { $, $$, params, reducedMotion, isDesktop, store } from './utils/dom.js';
 import { splitLetters } from './utils/split.js';
 import { createMusic } from './audio.js';
 import { playIntro, skipIntro } from './animations/intro.js';
+import { showEnvelope, removeEnvelope } from './animations/envelope.js';
 import { initScroll } from './animations/scroll.js';
 
 const root = document.documentElement;
@@ -105,7 +106,7 @@ function watchChromeTone() {
 }
 
 // ── music ────────────────────────────────────────────────────────────
-const music = createMusic('/audio/evening.mp3');
+const music = createMusic('/audio/adeel-adeela.mp3');
 const soundBtn = $('#soundBtn');
 let soundChosen = false; // once the guest uses the button, their choice wins
 const syncSoundBtn = () => soundBtn.setAttribute('aria-pressed', String(music.playing));
@@ -199,13 +200,23 @@ initForm();
 watchChromeTone();
 
 if (staticMode) {
+  removeEnvelope();
   skipIntro();
   document.body.classList.remove('is-intro');
 } else {
-  playIntro({
+  // the envelope first; opening it is the tap that starts the music, then the opening plays
+  showEnvelope({
+    onOpen() {
+      if (!music.playing) music.play().then(syncSoundBtn);
+      syncSoundBtn();
+    },
     onDone() {
-      document.body.classList.remove('is-intro');
-      startScrollScene();
+      playIntro({
+        onDone() {
+          document.body.classList.remove('is-intro');
+          startScrollScene();
+        },
+      });
     },
   });
 }

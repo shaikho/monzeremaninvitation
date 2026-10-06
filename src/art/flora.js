@@ -177,13 +177,20 @@ export function curtain(seed = 11, { count: n = 16 } = {}) {
 export function bouquet(seed = 21) {
   const r = rng(seed), id = `fl${uid++}`;
   const cx = 300, cy = 300;
-  let s = `<svg viewBox="0 0 600 760" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="flora">${defs(id)}`;
+  let s = '';
   for (let i = 0; i < 24; i++) {
     const a = (i / 24) * 360 + (r() - .5) * 10;
     s += leaf(id, cx, cy, 150 + r() * 70, 18 + r() * 8, a, i % 4 === 0);
   }
   for (let i = 0; i < 10; i++) s += sprig(id, cx, cy, 170 + r() * 90, -170 + r() * 160, r);
-  for (let i = 0; i < 7; i++) s += raceme(cx - 150 + i * 50 + (r() - .5) * 20, cy + 60 + r() * 40, 150 + r() * 160, (r() - .5) * 30, r);
+  // the canvas ends just below the longest trailing raceme, so no empty band is left under it
+  let bottom = 560;
+  for (let i = 0; i < 7; i++) {
+    const x = cx - 150 + i * 50 + (r() - .5) * 20, y = cy + 60 + r() * 40, len = 150 + r() * 160;
+    bottom = Math.max(bottom, y + len + 24);
+    s += raceme(x, y, len, (r() - .5) * 30, r);
+  }
+  s = `<svg viewBox="0 0 600 ${Math.min(760, Math.ceil(bottom))}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="flora">${defs(id)}` + s;
   const lilies = [[0, 0, 110, 'white'], [-110, -40, 92, 'pink'], [108, -52, 96, 'pink'], [-60, 90, 86, 'white'], [80, 96, 84, 'white'], [0, -120, 78, 'white'], [-150, 60, 64, 'pink'], [156, 52, 66, 'white']];
   for (const [dx, dy, size, tone] of lilies) s += lily(id, cx + dx, cy + dy, size, (r() - .5) * 90, tone, r);
   for (let i = 0; i < 28; i++) {
@@ -206,3 +213,25 @@ export function branch(seed = 31) {
   for (let i = 0; i < 5; i++) s += blossom(100 + r() * 60, 60 + r() * 120, 5 + r() * 3, r);
   return s + '</svg>';
 }
+
+/**
+ * Loose flowers for the envelope: each lily, blossom or leaf is its own small SVG in a
+ * span.burst-item, so every piece can fly on its own path. Returns the markup.
+ */
+export function burst(seed = 5) {
+  const n = 28;
+  const r = rng(seed);
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    const id = `fl${uid++}`, kind = i % 9;
+    let art, size;
+    if (kind < 4) { art = lily(id, 0, 0, 50, r() * 360, kind % 2 ? 'pink' : 'white', r); size = 62 + r() * 34; }
+    else if (kind < 7) { art = blossom(0, 0, 20 + r() * 6, r); size = 30 + r() * 14; }
+    else { art = leaf(id, 0, 34, 66, 15, (r() - .5) * 30, kind === 8); size = 30 + r() * 12; }
+    s += `<span class="burst-item" style="width:${f(size)}px"><svg viewBox="-60 -60 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="flora">${defs(id)}${art}</svg></span>`;
+  }
+  return s;
+}
+
+// the parts, for the painted panels in paintings.js
+export const parts = { P, f, rng, defs, leaf, lily, blossom, raceme, sprig, nextId: () => `fl${uid++}` };

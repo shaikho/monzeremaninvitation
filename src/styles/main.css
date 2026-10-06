@@ -148,6 +148,10 @@ section { position: relative; }
 .names-second { font-style: italic; color: var(--color-magenta); }
 :lang(ar) .names-second { font-style: normal; }
 .names-amp, .names-bride { display: inline-block; vertical-align: baseline; }
+/* the groom's full name sits on one line, a step smaller so it fits a phone */
+.names-groom { display: block; white-space: nowrap; font-size: .56em; }
+:lang(ar) .names-groom { font-size: 1em; }
+.names-groom .names-line { display: inline-block; }
 .names-amp { font-style: italic; font-size: .55em; color: var(--color-gold); margin-inline-end: .18em; }
 :lang(ar) .names-amp { font-style: normal; font-size: .6em; }
 .names .ch { display: inline-block; will-change: transform; }
@@ -336,7 +340,8 @@ section { position: relative; }
   clip-path: inset(22% 16% 22% 16%);
 }
 .venue-window picture, .venue-img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.venue-img { object-fit: cover; object-position: 30% 50%; transform: scale(1.35); }
+.venue-img { object-fit: cover; object-position: 50% 30%; transform: scale(1.35); }
+@media (min-width: 900px) { .venue-img { object-position: 30% 50%; } }
 .venue-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(35, 39, 26, .2), rgba(35, 39, 26, .78) 78%); opacity: 0; }
 .venue-copy {
   position: absolute; z-index: 2; inset-inline: var(--gutter); bottom: calc(10vh + env(safe-area-inset-bottom));
@@ -396,7 +401,7 @@ section { position: relative; }
    ========================================================================== */
 .interlude {
   position: relative; overflow: hidden;
-  padding: 0 0 14vh; background: linear-gradient(180deg, var(--color-paper-2), var(--color-paper));
+  padding: 0 0 3vh; background: linear-gradient(180deg, var(--color-paper-2), var(--color-paper));
 }
 .interlude-curtain { width: 100%; height: clamp(300px, 62vw, 620px); }
 .interlude-curtain svg { display: block; width: 100%; height: 100%; }
@@ -411,7 +416,7 @@ section { position: relative; }
 /* ==========================================================================
    8 · A word from you
    ========================================================================== */
-.note { padding: 16vh var(--gutter) 18vh; background: var(--color-paper); }
+.note { padding: 8vh var(--gutter) 18vh; background: var(--color-paper); }
 .note-title {
   margin: 0; max-width: 12ch; font-family: var(--f-display); font-weight: 400;
   font-size: clamp(2.6rem, 11vw, 6.4rem); line-height: 1; letter-spacing: -.015em;
@@ -509,3 +514,82 @@ html.static .venue-shade, html.static .venue-copy { opacity: 1; }
 html.og .chrome-actions, html.og .scroll-cue { display: none; }
 html.og { scrollbar-width: none; }
 html.og::-webkit-scrollbar { display: none; }
+
+/* ==========================================================================
+   0 · The envelope — sealed with M & E; one tap opens it into the opening
+   ========================================================================== */
+.envelope {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(60% 45% at 50% 48%, rgba(133, 61, 79, .18), rgba(133, 61, 79, 0) 70%),
+    var(--color-night);
+  cursor: pointer; outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.env-scene { display: flex; flex-direction: column; align-items: center; gap: clamp(28px, 6vh, 48px); }
+.env-kicker, .env-hint {
+  margin: 0; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--color-cream-soft); font-size: 11px; letter-spacing: .34em; text-transform: uppercase; text-align: center;
+}
+.env-kicker [lang='ar'], .env-hint [lang='ar'] { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 15px; letter-spacing: 0; text-transform: none; }
+.env-kicker { color: var(--color-blush); }
+.env-hint span:first-child { animation: env-hint 2.4s ease-in-out infinite; }
+@keyframes env-hint { 50% { opacity: .45; } }
+
+.env {
+  position: relative;
+  width: min(84vw, 460px); aspect-ratio: 1.5;
+  perspective: 1100px;
+  /* (a box-shadow on the back, not a filter, so the flying flowers stay cheap to draw) */
+}
+.env-back, .env-pocket, .env-flap { position: absolute; inset: 0; border-radius: 4px; }
+.env-back { background: linear-gradient(180deg, #c3c5ab, #b5b79c); box-shadow: 0 24px 40px rgba(0, 0, 0, .45), 0 6px 12px rgba(0, 0, 0, .25); }
+.env-card {
+  position: absolute; z-index: 3; left: 6%; right: 6%; top: 7%; height: 86%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: linear-gradient(180deg, #f3f2e6, #e9e8d7);
+  border: 1px solid rgba(143, 120, 80, .35); outline: 1px solid rgba(143, 120, 80, .25); outline-offset: -8px;
+  border-radius: 2px;
+}
+.env-card-mark { font-family: 'Bodoni Moda', serif; font-size: clamp(2.2rem, 11vw, 3.4rem); color: var(--color-ink); line-height: 1; }
+.env-card-mark i, .env-seal i { color: var(--color-magenta); padding: 0 .06em; }
+.env-card-date { font-size: 10px; letter-spacing: .32em; color: var(--color-gold); }
+.env-pocket {
+  z-index: 4;
+  background: linear-gradient(170deg, #e3e4cf 0%, #d6d8bf 100%);
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+}
+/* the two folded side seams of the pocket */
+.env-pocket::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top right, rgba(0, 0, 0, .06) 49.6%, transparent 50%) left / 50% 100% no-repeat,
+              linear-gradient(to top left, rgba(0, 0, 0, .06) 49.6%, transparent 50%) right / 50% 100% no-repeat;
+}
+.env-flap {
+  z-index: 5;
+  background: linear-gradient(180deg, #d9dbc3, #cdcfb5);
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: 50% 0;
+  backface-visibility: visible;
+}
+.env-flora {
+  position: absolute; z-index: 6; width: 24%; left: 3%; bottom: 4%;
+  transform: rotate(-24deg); pointer-events: none; opacity: .9;
+}
+.env-flora svg { display: block; width: 100%; height: auto; }
+.env-seal {
+  position: absolute; z-index: 7; left: 50%; top: 58%;
+  width: clamp(62px, 17vw, 78px); aspect-ratio: 1; margin: calc(clamp(62px, 17vw, 78px) / -2) 0 0 calc(clamp(62px, 17vw, 78px) / -2);
+  display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #a65266, var(--color-magenta) 45%, var(--color-plum) 100%);
+  box-shadow: 0 0 0 3px rgba(81, 31, 42, .55), inset 0 0 0 5px rgba(255, 255, 255, .08), inset 0 0 0 6px rgba(81, 31, 42, .5), 0 6px 14px rgba(0, 0, 0, .35);
+}
+.env-seal span { font-family: 'Bodoni Moda', serif; font-size: clamp(1.05rem, 4.6vw, 1.3rem); color: #f1dcd6; letter-spacing: .02em; }
+.env-seal i { color: #e5c2bf; }
+.js .env-kicker, .js .env, .js .env-hint { opacity: 0; }
+/* the loose flowers wait inside the envelope, just below its mouth, and spill out as it opens */
+.env-burst { position: absolute; z-index: 2; left: 50%; top: 34%; width: 0; height: 0; pointer-events: none; }
+.burst-item { position: absolute; left: 0; top: 0; translate: -50% -50%; opacity: 0; will-change: transform, opacity; }
+.burst-item svg { display: block; width: 100%; height: auto; overflow: visible; }
+.env-body { position: absolute; inset: 0; }

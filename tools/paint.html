@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<!-- Renders the painted panels (src/art/paintings.js) one at a time, for tools/README.md.
+     Open with the dev server running: /tools/paint.html?p=paneled|trail|alcove -->
+<html><head><meta charset="UTF-8"><style>html,body{margin:0;background:#23271a}svg{display:block;width:100vw;height:100vh}</style></head>
+<body><script type="module">
+  import * as paintings from '/src/art/paintings.js';
+  const p = new URLSearchParams(location.search).get('p') || 'paneled';
+  document.body.innerHTML = paintings[p]();
+  document.querySelector('svg').setAttribute('preserveAspectRatio', 'none');
+  document.body.dataset.ready = '1';
+</script></body></html>

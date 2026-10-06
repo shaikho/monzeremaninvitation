@@ -26,6 +26,30 @@
 </head>
 <body class="is-intro">
 
+  <!-- ═══ 0 · The envelope: tap to open ═══ -->
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the invitation · افتح الدعوة">
+    <div class="env-scene">
+      <p class="env-kicker"><span>You are invited</span><span lang="ar" dir="rtl">أنتم مدعوون</span></p>
+      <div class="env">
+        <!-- the paper parts; they fade together as one piece at the end -->
+        <div class="env-body">
+          <div class="env-back"></div>
+          <div class="env-card" aria-hidden="true">
+            <span class="env-card-mark">M<i>&amp;</i>E</span>
+            <span class="env-card-date" dir="ltr">27 · 10 · 2026</span>
+          </div>
+          <div class="env-pocket"></div>
+          <div class="env-flap"></div>
+          <div class="env-flora" data-flora="branch:31" aria-hidden="true"></div>
+          <span class="env-seal" aria-hidden="true"><span>M<i>&amp;</i>E</span></span>
+        </div>
+        <!-- loose lilies, blossoms and leaves: they rise from behind the card as it opens -->
+        <div class="env-burst" data-flora="burst:5" aria-hidden="true"></div>
+      </div>
+      <p class="env-hint"><span>Tap to open</span><span lang="ar" dir="rtl">اضغط لفتح الدعوة</span></p>
+    </div>
+  </div>
+
   <!-- Fixed, minimal chrome -->
   <header class="chrome" data-tone="light">
     <a class="chrome-mark" href="#top" aria-label="Mohammed Almonzer & Eman">M<i>&amp;</i>E</a>
@@ -51,13 +75,11 @@
       <div class="hero-copy">
         <p class="hero-kicker" data-i18n="hero.kicker"></p>
         <h1 class="names" data-names>
-          <span class="names-line names-first" data-i18n="hero.first"></span>
-          <span class="names-line names-second" data-i18n="hero.second"></span>
+          <span class="names-groom"><span class="names-line names-first" data-i18n="hero.first"></span> <span class="names-line names-second" data-i18n="hero.second"></span></span>
           <span class="names-line names-amp" data-i18n="hero.and"></span>
           <span class="names-line names-bride" data-i18n="hero.bride"></span>
         </h1>
         <div class="hero-rule" aria-hidden="true"></div>
-        <p class="hero-date" data-i18n="hero.date"></p>
       </div>
 
       <div class="scroll-cue" aria-hidden="true">
@@ -82,13 +104,13 @@
         <figure class="story-a" data-reveal-clip>
           <picture>
             <source srcset="/images/lilies-side.webp" type="image/webp" />
-            <img src="/images/lilies-side.jpg" width="204" height="1280" alt="" loading="lazy" decoding="async" />
+            <img src="/images/lilies-side.jpg" width="960" height="1408" alt="" loading="lazy" decoding="async" />
           </picture>
         </figure>
         <figure class="story-b" data-parallax="-18">
           <picture>
             <source srcset="/images/lilies-top.webp" type="image/webp" />
-            <img src="/images/lilies-top.jpg" width="288" height="540" alt="" loading="lazy" decoding="async" />
+            <img src="/images/lilies-top.jpg" width="780" height="1196" alt="" loading="lazy" decoding="async" />
           </picture>
         </figure>
         <h2 class="story-title">
@@ -141,8 +163,11 @@
       <div class="venue-sticky">
         <div class="venue-window">
           <picture>
+            <!-- a portrait painting for phones, the wide one for larger screens -->
+            <source media="(max-width: 899px)" srcset="/images/lilies-low-tall.webp" type="image/webp" />
+            <source media="(max-width: 899px)" srcset="/images/lilies-low-tall.jpg" type="image/jpeg" />
             <source srcset="/images/lilies-low.webp" type="image/webp" />
-            <img class="venue-img" src="/images/lilies-low.jpg" width="330" height="350" alt="" loading="lazy" decoding="async" />
+            <img class="venue-img" src="/images/lilies-low.jpg" width="2000" height="2000" alt="" loading="lazy" decoding="async" />
           </picture>
           <div class="venue-shade" aria-hidden="true"></div>
         </div>
@@ -150,7 +175,6 @@
           <p class="chapter chapter--light" data-i18n="venue.chapter"></p>
           <h2 class="venue-name" data-i18n="venue.name"></h2>
           <p class="venue-place" data-i18n="venue.place"></p>
-          <p class="venue-when" data-i18n="venue.when"></p>
           <nav class="venue-links">
             <a id="mapsLink" target="_blank" rel="noopener"><span data-i18n="venue.directions"></span><i aria-hidden="true">↗</i></a>
             <a id="gcalLink" target="_blank" rel="noopener"><span data-i18n="venue.google"></span><i aria-hidden="true">↗</i></a>

@@ -20,7 +20,7 @@ export function playIntro({ onDone }) {
   utils.set(lilies, { scale: 0, rotate: -40 });
   utils.set(letters.flat(), { translateY: '115%' });
   utils.set('.hero-rule', { scaleX: 0 });
-  utils.set(['.hero-kicker', '.hero-date', '.scroll-cue', '.chrome'], { opacity: 0 });
+  utils.set(['.hero-kicker', '.scroll-cue', '.chrome'], { opacity: 0 });
   utils.set('.hero-copy', { opacity: 1 });
 
   const tl = createTimeline({ defaults: { ease: 'outExpo' }, onComplete: finish });
@@ -35,7 +35,7 @@ export function playIntro({ onDone }) {
     .add(letters[2], { translateY: ['115%', '0%'], rotate: [-12, 0], duration: 1400 }, 2500)
     .add(letters[3], { translateY: ['115%', '0%'], duration: 1300, delay: stagger(45) }, 2600)
     .add('.hero-rule', { scaleX: [0, 1], duration: 1200, ease: 'inOutQuart' }, 3000)
-    .add(['.hero-date', '.scroll-cue', '.chrome'], { opacity: [0, 1], duration: 1200, delay: stagger(140) }, 3200);
+    .add(['.scroll-cue', '.chrome'], { opacity: [0, 1], duration: 1200, delay: stagger(140) }, 3200);
 
   // any tap, key or wheel during the opening jumps to its final frame
   const skip = () => { if (!tl.completed) tl.seek(tl.duration); };
@@ -63,5 +63,5 @@ export function playIntro({ onDone }) {
 export function skipIntro() {
   $$('.names-line').forEach((l) => splitLetters(l));
   utils.set('.hero-stage', { clipPath: 'circle(150% at 50% 50%)' });
-  utils.set(['.hero-copy', '.hero-kicker', '.hero-date', '.scroll-cue', '.chrome'], { opacity: 1 });
+  utils.set(['.hero-copy', '.hero-kicker', '.scroll-cue', '.chrome'], { opacity: 1 });
 }

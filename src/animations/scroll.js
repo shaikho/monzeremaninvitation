@@ -90,7 +90,7 @@ export function initScroll({ formatTime, formatNumber }) {
   // ── 7 · interlude: the wisteria grows down, the bouquet blooms open ─
   reveal('.interlude .fl-raceme', { scaleY: [0, 1], duration: 2000, delay: stagger(80, { from: 'random' }), ease: 'outQuart' }, '.interlude', '80% top', { scaleY: 0 });
   reveal('.interlude-bouquet .fl-bloom', { scale: [0, 1], rotate: [-35, 0], duration: 1400, delay: stagger(40, { from: 'center' }), ease: 'outBack(1.2)' }, '.interlude-bouquet', '85% top', { scale: 0 });
-  animate('.interlude-bouquet', { translateY: ['8vh', '-8vh'], ease: 'linear', autoplay: synced('.interlude') });
+  animate('.interlude-bouquet', { translateY: ['5vh', '0vh'], ease: 'linear', autoplay: synced('.interlude') });
 
   // ── 9 · the end: a slow pull back, then the names, like credits ───
   reveal('.ending-flora--tl, .ending-flora--tr', { opacity: [0, .92], translateY: ['-6vh', '0vh'], duration: 2200, delay: stagger(150), ease: 'outQuart' }, '.ending', '70% top');

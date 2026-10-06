@@ -25,7 +25,7 @@ npm run preview    # serves dist/ (static only: /api needs `npm run dev` or Verc
 
 The flowers are generated SVG (`src/art/flora.js`, modeled on image 1's lilies, wisteria and leaves). Change a composition's seed in `index.html` (`data-flora="cascade:3"`) to get a different arrangement.
 
-**Music:** `public/audio/evening.mp3` is an original, soft piano-and-pad loop (58 s) composed for the site. It never autoplays: it fades in on the guest's first tap, and the **Sound** button turns it on or off. To use a different song, replace that file and keep the name.
+**Music:** `public/audio/adeel-adeela.mp3` — «عديل و عديلة» (Sudanese folk, Hajar Mohammed Hassan). The page opens on a sealed **M & E envelope**; tapping it opens the envelope, starts the song with a soft fade-in and plays the opening. The **Sound** button turns it on or off. To use a different song, replace that file and keep the name.
 
 Animation touches only `transform`, `opacity` and `clip-path`. Scroll scenes use Anime.js `onScroll`. With `prefers-reduced-motion`, everything is simply shown.
 
@@ -44,7 +44,7 @@ Sampled from image **1**, the arched lily invitation, as CSS variables at the to
 
 ## Images
 
-`public/images/` holds three crops of image 1 (`lilies-side`, `lilies-top`, `lilies-low`), each as `.webp` plus a `.jpg` fallback, used in the prologue and the venue. To use real wedding photographs, drop them in and update the `<picture>` sources in `index.html`.
+`public/images/` holds generated floral paintings (`lilies-side`, `lilies-top`, `lilies-low`, plus `lilies-low-tall` for phones), each as `.webp` plus a `.jpg` fallback, used in the prologue and the venue. They are drawn in `src/art/paintings.js`; see `tools/README.md` to re-render them. To use real wedding photographs instead, drop them in and update the `<picture>` sources in `index.html`.
 
 ## Editing content
 
