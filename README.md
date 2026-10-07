@@ -25,7 +25,7 @@ npm run preview    # serves dist/ (static only: /api needs `npm run dev` or Verc
 
 The flowers are generated SVG (`src/art/flora.js`, modeled on image 1's lilies, wisteria and leaves). Change a composition's seed in `index.html` (`data-flora="cascade:3"`) to get a different arrangement.
 
-**Music:** `public/audio/adeel-adeela.mp3` — «عديل و عديلة» (Sudanese folk, Hajar Mohammed Hassan). The page opens on a sealed **M & E envelope**; tapping it opens the envelope, starts the song with a soft fade-in and plays the opening. The **Sound** button turns it on or off. To use a different song, replace that file and keep the name.
+**Music:** `public/audio/evening.mp3` is an original, soft piano-and-pad loop (58 s) composed for the site. The page opens on a sealed **M & E envelope**; tapping it opens the envelope, starts the music with a soft fade-in and plays the opening. The **Sound** button turns it on or off. To use a different song, replace that file and keep the name.
 
 Animation touches only `transform`, `opacity` and `clip-path`. Scroll scenes use Anime.js `onScroll`. With `prefers-reduced-motion`, everything is simply shown.
 

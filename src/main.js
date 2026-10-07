@@ -106,7 +106,7 @@ function watchChromeTone() {
 }
 
 // ── music ────────────────────────────────────────────────────────────
-const music = createMusic('/audio/adeel-adeela.mp3');
+const music = createMusic('/audio/evening.mp3');
 const soundBtn = $('#soundBtn');
 let soundChosen = false; // once the guest uses the button, their choice wins
 const syncSoundBtn = () => soundBtn.setAttribute('aria-pressed', String(music.playing));
